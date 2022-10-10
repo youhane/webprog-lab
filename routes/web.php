@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RegisterController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ProductController::class, 'index']);
+Route::get('/category', [CategoryController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/products/{category}', [ProductController::class, 'showProductsByCategory']);
+Route::get('/products/{id}', [ProductController::class, 'findONe']);
