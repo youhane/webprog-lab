@@ -1,6 +1,7 @@
 @extends('layouts.base')
 @section('content')
     <h1>Ini dashboard</h1>
+    <h2>Logged in as {{ auth()->user()->name }}</h2>
 
     <div class="container">
         <div class="row">

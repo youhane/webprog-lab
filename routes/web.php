@@ -20,7 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'index']);
 Route::get('/category', [CategoryController::class, 'index']);
-Route::get('/login', [LoginController::class, 'index']);
-Route::get('/register', [RegisterController::class, 'index']);
+
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
+
 Route::get('/products/{category}', [ProductController::class, 'showProductsByCategory']);
-Route::get('/products/{id}', [ProductController::class, 'findONe']);
+Route::get('/products/{id}', [ProductController::class, 'findOne']);
