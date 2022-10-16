@@ -51,19 +51,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-
-    }
-
-    public function showProductsByCategory($category){
-        $products = Product::with('category')->where('category_id', $category)->get();
-        return view('products.products', [
-            'active' => 'home',
-            'products'=> $products
-        ]);
-    }
-
-    public function findOne($id){
-        $product = Product::find($id);
         return view('products.product', [
             'active' => 'home',
             'product' => $product

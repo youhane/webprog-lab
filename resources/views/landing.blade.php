@@ -1,7 +1,14 @@
 @extends('layouts.base')
 @section('content')
     <h1>Ini dashboard</h1>
-    <h2>Logged in as {{ auth()->user()->name }}</h2>
+    {{-- Check if user is logged in --}}
+    @if (Auth::check())
+        <h2>Welcome {{ auth()->user()->name }}</h2>
+        <form action="/logout" method="POST">
+            @csrf
+            <button class="nav-link btn btn-primary">Logout</button>
+        </form>
+    @endif
 
     <div class="container">
         <div class="row">
@@ -21,7 +28,7 @@
                                 <h5 class="card-title">{{ $prod->name }}</h5>
                                 <p class="card-text">{{ $prod->description }}</p>
                                 <p class="card-text">{{ $prod->category->name }}</p>
-                                <a href="#" class="btn btn-primary">Read More...</a>
+                                <a href="/products/{{ $prod->slug }}" class="btn btn-primary">Read More...</a>
                             </div>
                         </div>
                     </div>
