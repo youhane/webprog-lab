@@ -14,10 +14,26 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // Retrieve all products from database grouped by category
-        $products = Product::with('category')->get()->groupBy('category.name');
-        return view('landing', [
+        $hasSearch = false;
+        if(request('search')){
+            $products = Product::where('name', 'like', '%' . request('search') . '%')
+                ->orWhere('description', 'like', '%' . request('search') . '%')
+                ->paginate(9);
+            $hasSearch = true;
+        }  else if (request('category')) {
+            $products = Product::whereHas('category', function($query){
+                $query->where('slug', request('category'));
+            })->paginate(9);
+            $hasSearch = true;
+        }
+        else {
+            $products = Product::with('category')->get()->groupBy('category.name');
+            $hasSearch = false;
+        }
+
+        return view('products.products', [
             'active' => 'home',
+            'hasSearch' => $hasSearch,
             'products'=> $products
         ]);
     }

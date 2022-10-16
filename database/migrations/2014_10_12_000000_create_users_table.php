@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->date('dob');
             $table->string('country');
             $table->string('password');
+            $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
