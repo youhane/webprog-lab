@@ -1,23 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-danger px-5">
-    <a class="navbar-brand" href="/">Barbatos Shop</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link {{ $active === 'products' ? 'active' : '' }}" href="/products">Products</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $active === 'category' ? 'active' : '' }}" href="/category">Category</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $active === 'login' ? 'active' : '' }}" href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $active === 'register' ? 'active' : '' }}" href="/register">Register</a>
-            </li>
+<nav class="navbar">
+    <div class="logo">
+        <a href="/">Barbatos Shop</a>
+    </div>
+    <div>
+        <ul id="MenuItems">
+            <li><a href="/products">Products</a></li>
+            <li><a href="/category">Categories</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
         </ul>
     </div>
+    <a href="cart.html">
+        <img src="Assets/cart.png" width="30px" height="30px" alt="" />
+    </a>
+    <img src="Assets/menu.png" class="menu-icon" alt="" onclick="menutoggle()" />
 </nav>
