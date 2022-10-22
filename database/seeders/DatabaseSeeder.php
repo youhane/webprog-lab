@@ -113,6 +113,13 @@ class DatabaseSeeder extends Seeder
             'price' => 2000000,
             'category_id' => 4
         ]);
+        Product::create([
+            'name' => 'Pencil',
+            'slug' => 'pencil',
+            'description' => 'A pencil is a writing implement used to apply ink to a surface, usually paper, for writing or drawing. Historically, reed pens, quill pens, and dip pens were used, with a nib dipped in ink.',
+            'price' => 50000,
+            'category_id' => 5
+        ]);
 
         Product::create([
             'name' => 'Eyeshadow',
@@ -120,6 +127,13 @@ class DatabaseSeeder extends Seeder
             'description' => 'Eyeshadow is a cosmetic that is applied on the eyelids and under the eyebrows. It is commonly used to make the wearer\'s eyes stand out or look more attractive.',
             'price' => 200000,
             'category_id' => 1
+        ]);
+        Product::create([
+            'name' => 'Canon EOS 5D Mark III',
+            'slug' => 'canon-eos-5d-mark-iii',
+            'description' => 'Canon EOS 5D Mark III is a full frame DSLR camera with 22.3MP resolution. It has a 61-point AF system and 4K video recording capability.',
+            'price' => 25000000,
+            'category_id' => 2
         ]);
         Product::create([
             'name' => 'Jeans',
@@ -143,6 +157,27 @@ class DatabaseSeeder extends Seeder
             'category_id' => 5
         ]);
 
+        Product::create([
+            'name' => 'Concealer',
+            'slug' => 'concealer',
+            'description' => 'Concealer is a cosmetic product used to hide or reduce the appearance of skin blemishes, dark circles under the eyes, and other imperfections.',
+            'price' => 250000,
+            'category_id' => 1
+        ]);
+        Product::create([
+            'name' => 'Nikon D750',
+            'slug' => 'nikon-d750',
+            'description' => 'Nikon D750 is a full frame DSLR camera with 24.3MP resolution. It has a 51-point AF system and 4K video recording capability.',
+            'price' => 35000000,
+            'category_id' => 2
+        ]);
+        Product::create([
+            'name' => 'Jacket',
+            'slug' => 'jacket',
+            'description' => 'A jacket is a mid-stomach–length garment for the upper body. A jacket typically has sleeves, and fastens in the front or slightly on the side.',
+            'price' => 400000,
+            'category_id' => 3
+        ]);
         Product::create([
             'name' => 'Keyboard',
             'slug' => 'keyboard',

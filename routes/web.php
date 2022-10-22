@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
@@ -34,3 +35,8 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/products/{product:slug}', [ProductController::class, 'show']);
+Route::post('/product/create', [AdminController::class, 'create']);
+
+Route::get('/admin/manage', [AdminController::class, 'index'])->middleware('admin');
+Route::get('/admin/add', [AdminController::class, 'create'])->middleware('admin');
+Route::delete('/admin/delete/{id}', [ProductController::class, 'destroy'])->middleware('admin');

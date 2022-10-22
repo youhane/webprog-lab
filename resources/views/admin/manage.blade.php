@@ -40,11 +40,18 @@
                                 <p class="card-text">{{ $product->description }}</p>
                                 <a href="/products?category={{ $product->category->slug }}"
                                     class="card-text d-block">{{ $product->category->name }}</a>
-                                <a href="/products/{{ $product->slug }}" class="btn btn-primary">Read More...</a>
+                                <div>
+                                    <a href="/products/{{ $product->slug }}" class="btn btn-primary">Read More...</a>
+                                    <form action="/admin/delete/{{ $product->id }}" method="POST">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="badge bg-danger border-0">Delete</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                {{-- Not Search --}}
+                    {{-- Not Search --}}
                 @else
                     <h1>{{ $product[0]->category->name }}</h1>
                     @foreach ($product as $prod)
@@ -62,7 +69,14 @@
                                     <p class="card-text">{{ $prod->description }}</p>
                                     <a href="/products?category={{ $prod->category->slug }}"
                                         class="card-text d-block">{{ $prod->category->name }}</a>
-                                    <a href="/products/{{ $prod->slug }}" class="btn btn-primary">Read More...</a>
+                                    <div>
+                                        <a href="/products/{{ $prod->slug }}" class="btn btn-primary">Read More...</a>
+                                        <form action="/admin/delete/{{ $prod->id }}" method="POST" >
+                                            @method('delete')
+                                            @csrf
+                                            <button class="badge bg-danger border-0">Delete</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
