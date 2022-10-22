@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
@@ -18,11 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function() {
-    return view('landing', [
-        'active' => 'home'
-    ]);
-});
+Route::get('/', [DashboardController::class, 'index']);
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/category', [CategoryController::class, 'index']);

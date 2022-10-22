@@ -1,15 +1,6 @@
 @extends('layouts.base')
 @section('content')
-    {{-- Check if user is logged in --}}
-    @if (Auth::check())
-        <h2>Welcome {{ auth()->user()->name }}</h2>
-        <form action="/logout" method="POST">
-            @csrf
-            <button class="nav-link btn btn-primary">Logout</button>
-        </form>
-    @endif
-
-    <div class="header">
+    <section class="header">
         <div class="container">
             <div class="row">
                 <div class="col-2">
@@ -18,213 +9,65 @@
                         Success isn't always about greatness. It's about happiness.
                         <br />Happiness makes the world beautiful.
                     </p>
-                    <a href="" class="btn">Explore Now &#8594;</a>
+                    <a href="#categories" class="btn">Explore Now &#8594;</a>
                 </div>
                 <div class="col-2">
                     <img src="Assets/image1.png" alt="" />
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- featured categories  -->
-    <div class="categories">
+    <section id="categories" class="categories">
+        <h1 class="text-center"><a class="text-black text-decoration-none" href="/categories">Categories</a></h1>
         <div class="small-container">
             <div class="row">
-                <div class="col-3">
-                    <img src="Assets/category-1.jpg" alt="" />
-                </div>
-                <div class="col-3">
-                    <img src="Assets/category-2.jpg" alt="" />
-                </div>
-                <div class="col-3">
-                    <img src="Assets/category-3.jpg" alt="" />
-                </div>
+                @foreach ($categories as $category)
+                    <div class="col-3">
+                        <p>{{ $category->name }}</p>
+                        <img src="https://source.unsplash.com/960x960?{{ $category->name }}" alt="" />
+                    </div>
+                @endforeach
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- featured products -->
-    <div class="small-container">
+    <section class="small-container">
         <h2 class="title">Featured Products</h2>
         <div class="row">
-            <div class="col-4">
-                <a href="products-detail.html"><img src="Assets/product-1.png" alt="" /></a>
-                <a href="products-detail.html">
-                    <h4>Diamond Ring</h4>
-                </a>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
+            @foreach ($products->take(4) as $product)
+                <div class="col-4">
+                    <a href="products-detail.html"><img
+                            src="https://source.unsplash.com/420x420?{{ $product->category->name }}" alt="" /></a>
+                    <a href="products-detail.html">
+                        <h4>{{ $product->name }}</h4>
+                    </a>
+                    <p>{{ $product->category->name }}</p>
+                    <em>{{ $product->description }}</em>
+                    <sub>{{ $product->price }}</sub>
                 </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <a href="products-detail.html"><img src="Assets/product-2.png" alt="" /></a>
-                <a href="products-detail.html">
-                    <h4>Diamond Ring</h4>
-                </a>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <a href="products-detail.html"><img src="Assets/product-3.png" alt="" /></a>
-                <a href="products-detail.html">
-                    <h4>Diamond Ring</h4>
-                </a>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <a href="products-detail.html"><img src="Assets/product-4.png" alt="" /></a>
-                <a href="products-detail.html">
-                    <h4>Diamond Ring</h4>
-                </a>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
+            @endforeach
         </div>
         <h2 class="title">Latest Products</h2>
         <div class="row">
-            <div class="col-4">
-                <a href="products-detail.html"><img src="Assets/product-5.jpg" alt="" /></a>
-                <a href="products-detail.html">
-                    <h4>Diamond Ring</h4>
-                </a>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
+            @foreach ($products->take(8) as $product)
+                <div class="col-4">
+                    <a href="products-detail.html"><img
+                            src="https://source.unsplash.com/420x420?{{ $product->category->name }}" alt="" /></a>
+                    <a href="products-detail.html">
+                        <h4>{{ $product->name }}</h4>
+                    </a>
+                    <p>{{ $product->category->name }}</p>
+                    <em>{{ $product->description }}</em>
+                    <sub>{{ $product->price }}</sub>
                 </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <a href="products-detail.html"><img src="Assets/product-6.jpg" alt="" /></a>
-                <a href="products-detail.html">
-                    <h4>Diamond Ring</h4>
-                </a>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <a href="products-detail.html"><img src="Assets/product-7.jpg" alt="" /></a>
-                <a href="products-detail.html">
-                    <h4>Diamond Ring</h4>
-                </a>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <a href="products-detail.html"><img src="Assets/product-8.jpg" alt="" /></a>
-                <a href="products-detail.html">
-                    <h4>Diamond Ring</h4>
-                </a>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
+            @endforeach
         </div>
-        <div class="row">
-            <div class="col-4">
-                <a href="products-detail.html"><img src="Assets/product-9.png" alt="" /></a>
-                <a href="products-detail.html">
-                    <h4>Diamond Ring</h4>
-                </a>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <a href="products-detail.html"><img src="Assets/product-10.png" alt="" /></a>
-                <a href="products-detail.html">
-                    <h4>Diamond Ring</h4>
-                </a>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <a href="products-detail.html"><img src="Assets/product-11.png" alt="" /></a>
-                <a href="products-detail.html">
-                    <h4>Diamond Ring</h4>
-                </a>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <a href="products-detail.html"><img src="Assets/product-12.png" alt="" /></a>
-                <a href="products-detail.html">
-                    <h4>Diamond Ring</h4>
-                </a>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-        </div>
-    </div>
+    </section>
+
     <!-- Offer -->
-    <div class="offer">
+    <section class="offer">
         <div class="small-container">
             <div class="row">
                 <div class="col-2">
@@ -242,10 +85,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- testimonial -->
-    <div class="testimonial">
+    <section class="testimonial">
         <div class="small-container">
             <div class="row">
                 <div class="col-3">
@@ -301,9 +144,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
     <!-- brands -->
-    <div class="brands">
+    <section class="brands">
         <div class="small-container">
             <h2 class="title">Collaborating Brands</h2>
             <div class="row">
@@ -324,5 +168,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection
