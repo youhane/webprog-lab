@@ -3,9 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,15 +23,14 @@ Route::get('/', [DashboardController::class, 'index']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/categories', [CategoryController::class, 'index']);
 
-Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/register', [UserController::class, 'register'])->middleware('guest');
+Route::get('/login', [UserController::class, 'login'])->middleware('guest');
+Route::get('/profile', [UserController::class, 'edit'])->middleware('auth');
+Route::put('/profile', [UserController::class, 'update'])->middleware('auth');
 
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store']);
-
-Route::post('/edit', [RegisterController::class, 'edit']);
-Route::post('/edit', [RegisterController::class, 'edit']);
+Route::post('/login', [UserController::class, 'authenticate'])->middleware('guest');
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+Route::post('/register', [UserController::class, 'create'])->middleware('guest');
 
 Route::get('/products/{product:slug}', [ProductController::class, 'show']);
 Route::post('/product/create', [AdminController::class, 'create']);

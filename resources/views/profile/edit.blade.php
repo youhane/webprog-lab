@@ -1,12 +1,13 @@
 @extends('layouts.auth')
 @section('content')
-    <h1>Register</h1>
-    <form action="/register" method="POST" class="form-registration">
+    <h1>Edit Profile</h1>
+    <form action="/profile" method="POST" class="form-registration">
+        @method('put')
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" required
-                value="{{ old('name') }}">
+                value="{{ $user->name }}">
             @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -14,41 +15,8 @@
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email" required
-                value="{{ old('email') }}">
+                value="{{ $user->email }}">
             @error('email')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Your Password"
-                required>
-            @error('password')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="confirm_pass" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="confirm_pass" name="confirm_pass"
-                placeholder="Re-type Your Password" required>
-        </div>
-        <div class="mb-3">
-            <p>Gender</p>
-            <div class="d-flex gap-4">
-                <div class="d-flex gap-2">
-                    <input type="radio" class="form-check-input" value="male" id="male" name="gender" required>
-                    <label for="male" class="form-check-label">Male</label>
-                </div>
-                <div class="d-flex gap-2">
-                    <input type="radio" class="form-check-input" value="female" id="female" name="gender" required>
-                    <label for="female" class="form-check-label">Female</label>
-                </div>
-            </div>
-        </div>
-        <div class="mb-3">
-            <label for="dob" class="form-label">Date of Birth</label>
-            <input type="date" class="form-control" id="dob" name="dob" required value="{{ old('dob') }}">
-            @error('dob')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
@@ -67,8 +35,6 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-        <button type="submit" class="btn rounded-2 w-100 btn-primary">Register</button>
+        <button type="submit" class="btn rounded-2 w-100 btn-primary">Edit Profile</button>
     </form>
-@endsection
-
 @endsection

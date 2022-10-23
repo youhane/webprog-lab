@@ -15,26 +15,16 @@ class ProductController extends Controller
     public function index()
     {
         $hasSearch = false;
-        if(request('search')){
-            $products = Product::where('name', 'like', '%' . request('search') . '%')
-                ->orWhere('description', 'like', '%' . request('search') . '%')
-                ->paginate(9);
-            $hasSearch = true;
-        }  else if (request('category')) {
-            $products = Product::whereHas('category', function($query){
-                $query->where('slug', request('category'));
-            })->paginate(9);
-            $hasSearch = true;
-        }
-        else {
+        if (request('search')) {
+            $products = Product::where('name', 'like', '%' . request('search') . '%')->orWhere('description', 'like', '%' . request('search') . '%')->get()->groupBy('category.name');
+        } else {
             $products = Product::all()->groupBy('category.name');
-            $hasSearch = false;
         }
 
         return view('products.products', [
             'active' => 'products',
             'hasSearch' => $hasSearch,
-            'products'=> $products
+            'products' => $products
         ]);
     }
 
