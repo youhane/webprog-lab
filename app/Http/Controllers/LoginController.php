@@ -21,16 +21,15 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($credentials)) {
+        $remember_me = $request->has('remember_me') ? true : false;
+
+        if (Auth::attempt($credentials, $remember_me)) {
             $request->session()->regenerate();
 
             return redirect('/');
+        } else {
+            return back()->with('error', 'Your username or password is wrong.');
         }
-
-        return back()->with(
-            'loginError',
-            'The provided credentials do not match our records.',
-        );
     }
 
     public function logout(Request $request)

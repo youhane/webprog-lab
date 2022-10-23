@@ -16,7 +16,7 @@ class CategoryController extends Controller
     {
         // Retrieve all categories from database
         return view('category', [
-            'active' => 'category',
+            'active' => 'categories',
             'categories' => Category::all()
         ]);
     }

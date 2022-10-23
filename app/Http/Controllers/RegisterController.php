@@ -111,4 +111,10 @@ class RegisterController extends Controller
 
         return redirect('/login')->with('success', 'Registration Successfull! Please Login');
     }
+
+    public function edit(User $user)
+    {
+        $user = User::find($user->id);
+        dd($user);
+    }
 }

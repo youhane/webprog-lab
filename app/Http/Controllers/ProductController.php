@@ -32,7 +32,7 @@ class ProductController extends Controller
         }
 
         return view('products.products', [
-            'active' => 'home',
+            'active' => 'products',
             'hasSearch' => $hasSearch,
             'products'=> $products
         ]);
