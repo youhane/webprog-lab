@@ -30,23 +30,28 @@ class DatabaseSeeder extends Seeder
 
         Category::create([
             'name' => 'Beauty',
-            'slug' => 'beauty'
+            'slug' => 'beauty',
+            'image' => 'https://media-assets.vanityfair.it/photos/62ced23aa21376bd525894e1/4:3/w_3359,h_2519,c_limit/1057154458'
         ]);
         Category::create([
             'name' => 'Camera',
-            'slug' => 'camera'
+            'slug' => 'camera',
+            'image' => 'https://shotkit.com/wp-content/uploads/2020/05/dslrvsmirrorless-2.jpg'
         ]);
         Category::create([
             'name' => 'Clothing',
-            'slug' => 'clothing'
+            'slug' => 'clothing',
+            'image' => 'https://i.insider.com/5b524c3467627a37008b4568?width=1000&format=jpeg&auto=webp'
         ]);
         Category::create([
             'name' => 'Hobby',
-            'slug' => 'hobby'
+            'slug' => 'hobby',
+            'image' => 'https://static.vecteezy.com/system/resources/previews/000/146/658/original/vector-hobby-icon-set.jpg'
         ]);
         Category::create([
             'name' => 'Others',
-            'slug' => 'others'
+            'slug' => 'others',
+            'image' => 'https://simplissimus.s3.amazonaws.com/production/production/project/29/images/etc.jpg'
         ]);
 
         Product::create([

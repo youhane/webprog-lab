@@ -5,7 +5,7 @@
             <h1>Categories</h1>
                 @foreach ($categories as $category)
                     <div class="card w-25">
-                        <img src="https://source.unsplash.com/1200x400?{{ $category->name }}" alt="">
+                        <img src="{{ $category->image }}" alt="">
                         <a href="/products?category={{ $category->name }}">
                             <h2>{{ $category->name }}</h2>
                         </a>

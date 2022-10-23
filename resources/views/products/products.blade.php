@@ -13,8 +13,11 @@
                 <div class="col col-md-6 col-lg-3 align-items-center justify-content-center my-1">
                     <div class="card">
                         <a href="/products?category={{ $prod->category->name }}">
-                            <img src="https://source.unsplash.com/90x90?{{ $prod->category->name }}"
-                                class="card-img-top" alt="...">
+                            @if ($prod->image == null)
+                                <img src="{{ asset('storage/product-images/no-image.png') }}" class="card-img-top" alt="...">
+                            @else
+                                <img src="{{ asset('storage/' . $prod->image) }}" class="card-img-top" alt="...">
+                            @endif
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">{{ $prod->name }}</h5>
