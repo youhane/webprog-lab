@@ -22,11 +22,6 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.add', [
@@ -67,30 +62,29 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        return view('products.product', [
-            'active' => 'home',
+        return view('admin.edit', [
+            'active' => 'edit',
+            'categories' => Category::all(),
             'product' => $product
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Product $product)
     {
-        //
+        $rules = [
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        Product::where('id', $product->id)->update($validatedData);
+
+        return redirect('/admin/manage');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Product $product)
     {
         Product::destroy($product->id);

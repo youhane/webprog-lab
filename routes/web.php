@@ -7,17 +7,6 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', [DashboardController::class, 'index']);
 
 Route::get('/products', [ProductController::class, 'index']);
@@ -33,9 +22,8 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 Route::post('/register', [UserController::class, 'create'])->middleware('guest');
 
 Route::get('/products/{product:slug}', [ProductController::class, 'show']);
-
-Route::post('/product/create', [AdminController::class, 'create']);
-Route::get('/product/{product:slug}/edit', [ProductController::class, 'edit']);
+Route::get('/products/{product:slug}/edit', [ProductController::class, 'edit']);
+Route::put('/products/{product:slug}/edit', [ProductController::class, 'update']);
 
 Route::get('/admin/manage', [AdminController::class, 'index'])->middleware('admin');
 Route::get('/admin/add', [ProductController::class, 'create'])->middleware('admin');
