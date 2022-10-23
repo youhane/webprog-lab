@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-
-
     public function edit()
     {
         $countries = [
@@ -102,34 +100,26 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, User $user)
     {
-        $user->update($request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed'
-        ]));
+        $rules = [
+            'name' => 'required|min:5',
+            'gender' => 'required',
+            'dob' => 'required|date|before:today|after:01/01/1900',
+            'country' => 'required',
+        ];
 
-        dd($user);
+        if($request->email != $user->email) {
+            $rules['email'] = 'required|email|unique:users,email';
+        }
 
-        $user = User::find($user->id);
+        $validatedData = $request->validate($rules);
 
-        return redirect()->route('users.edit');
+        User::where('id', $user->id)->update($validatedData);
+
+        return redirect('/profile');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(User $user)
     {
         //
@@ -231,6 +221,24 @@ class UserController extends Controller
         return view('login', [
             'active' => 'login'
         ]);
+    }
+
+    public function create(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|min:5',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+            'gender' => 'required',
+            'dob' => 'required|date|before:today|after:01/01/1900',
+            'country' => 'required',
+        ]);
+
+        $validatedData['password'] = bcrypt($validatedData['password']);
+
+        User::create($validatedData);
+
+        return redirect('/login')->with('success', 'Registration Successfull! Please Login');
     }
 
     public function authenticate(Request $request)

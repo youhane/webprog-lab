@@ -26,7 +26,7 @@ Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/register', [UserController::class, 'register'])->middleware('guest');
 Route::get('/login', [UserController::class, 'login'])->middleware('guest');
 Route::get('/profile', [UserController::class, 'edit'])->middleware('auth');
-Route::put('/profile', [UserController::class, 'update'])->middleware('auth');
+Route::put('/profile/{user:id}', [UserController::class, 'update'])->middleware('auth');
 
 Route::post('/login', [UserController::class, 'authenticate'])->middleware('guest');
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
