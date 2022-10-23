@@ -2,19 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $hasSearch = false;
         if (request('search')) {
             $products = Product::where('name', 'like', '%' . request('search') . '%')->orWhere('description', 'like', '%' . request('search') . '%')->get()->groupBy('category.name');
         } else {
@@ -23,7 +18,6 @@ class ProductController extends Controller
 
         return view('products.products', [
             'active' => 'products',
-            'hasSearch' => $hasSearch,
             'products' => $products
         ]);
     }
@@ -35,26 +29,34 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.add', [
+            'active' => 'admin',
+            'categories' => Category::all(),
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        Product::create([
+            'name' => $validatedData['name'],
+            'slug' => str_replace(' ', '-', strtolower($validatedData['name'])),
+            'description' => $validatedData['description'],
+            'price' => $validatedData['price'],
+            'category_id' => $validatedData['category_id'],
+        ]);
+
+        return redirect('/admin/manage');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function show(Product $product)
     {
         return view('products.product', [
@@ -63,15 +65,12 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Product $product)
     {
-        //
+        return view('products.product', [
+            'active' => 'home',
+            'product' => $product
+        ]);
     }
 
     /**

@@ -42,7 +42,7 @@
                                 <li><a class="dropdown-item" href="/history"><i class="bi bi-clock-history"></i>
                                         History</a></li>
                             @elseif (auth()->user()->is_admin == 1)
-                                <li><a class="dropdown-item" href="/admin"><i class="bi bi-columns-gap"></i> Manage
+                                <li><a class="dropdown-item" href="/admin/manage"><i class="bi bi-columns-gap"></i> Manage
                                         Products</a></li>
                             @endif
                             <li>

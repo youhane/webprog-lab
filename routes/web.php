@@ -33,8 +33,11 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 Route::post('/register', [UserController::class, 'create'])->middleware('guest');
 
 Route::get('/products/{product:slug}', [ProductController::class, 'show']);
+
 Route::post('/product/create', [AdminController::class, 'create']);
+Route::get('/product/{product:slug}/edit', [ProductController::class, 'edit']);
 
 Route::get('/admin/manage', [AdminController::class, 'index'])->middleware('admin');
-Route::get('/admin/add', [AdminController::class, 'create'])->middleware('admin');
-Route::delete('/admin/delete/{id}', [ProductController::class, 'destroy'])->middleware('admin');
+Route::get('/admin/add', [ProductController::class, 'create'])->middleware('admin');
+Route::post('/admin/add', [ProductController::class, 'store'])->middleware('admin');
+Route::delete('/admin/delete/{product:id}', [ProductController::class, 'destroy'])->middleware('admin');
