@@ -65,9 +65,14 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
+        $related_products = Product::whereHas('category', function ($query) use ($product) {
+            $query->where('slug', $product->category->slug);
+        })->get();
+
         return view('products.product', [
-            'active' => 'home',
-            'product' => $product
+            'active' => 'product',
+            'product' => $product,
+            'related_products' => $related_products,
         ]);
     }
 
