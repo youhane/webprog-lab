@@ -2,8 +2,8 @@
 @section('content')
     <section class="header">
         <div class="container">
-            <div class="row">
-                <div class="col-2">
+            <div class="row d-flex flex-column flex-lg-row align-items-center text-center text-sm-start py-5">
+                <div class="col col-sm-6">
                     <h1>Give Yourself the<br />Item You Deserve!</h1>
                     <p>
                         Success isn't always about greatness. It's about happiness.
@@ -11,162 +11,85 @@
                     </p>
                     <a href="#categories" class="btn">Explore Now &#8594;</a>
                 </div>
-                <div class="col-2">
-                    <img src="Assets/image1.png" alt="" />
+                <div class="col col-sm-6">
+                    <img src="Assets/image1.png" alt="" class="w-100" />
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="categories" class="categories">
-        <h1 class="text-center"><a class="text-black text-decoration-none" href="/categories">Categories</a></h1>
-        <div class="small-container">
+    <section id="categories">
+        <h1 class="title"><a class="text-black text-decoration-none" href="/categories">Categories</a></h1>
+        <div class="container-fluid w-75">
             <div class="row">
                 @foreach ($categories as $category)
-                    <div class="col-3">
-                        <p>{{ $category->name }}</p>
-                        <img src="https://source.unsplash.com/960x960?{{ $category->name }}" alt="" />
+                    <div class="col col-md-3 col-lg-4 align-items-center justify-content-center my-1">
+                        <a href="/products?category={{ $category->name }}">
+                            <p class="text-decoration-none text-black fs-4">{{ $category->name }}</p>
+                            <img src="https://source.unsplash.com/90x90?{{ $category->name }}" alt=""
+                                class="w-100" />
+                        </a>
                     </div>
                 @endforeach
             </div>
         </div>
     </section>
 
-    <!-- featured products -->
-    <section class="small-container">
+    <section id="products">
         <h2 class="title">Featured Products</h2>
-        <div class="row">
-            @foreach ($products->take(4) as $product)
-                <div class="col-4">
-                    <a href="products-detail.html"><img
-                            src="https://source.unsplash.com/420x420?{{ $product->category->name }}" alt="" /></a>
-                    <a href="products-detail.html">
-                        <h4>{{ $product->name }}</h4>
-                    </a>
-                    <p>{{ $product->category->name }}</p>
-                    <em>{{ $product->description }}</em>
-                    <sub>{{ $product->price }}</sub>
-                </div>
-            @endforeach
+        <div class="container-fluid w-75">
+            <div class="row">
+                @foreach ($products->take(4) as $product)
+                    <div class="col col-md-6 col-lg-3 align-items-center justify-content-center my-1">
+                        <div class="card">
+                            <a href="/products?category={{ $product->category->name }}">
+                                <img src="https://source.unsplash.com/90x90?{{ $product->category->name }}"
+                                    class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $product->name }}</h5>
+                                <h6 class="card-category">
+                                    <a href="/products?category={{ $product->category->name }}">{{ $product->category->name }}</a>
+                                </h6>
+                                <p class="card-desc">{{ str_split($product->description, 75)[0] }}...</p>
+                                <p class="card-price">Rp. {{ number_format($product->price, 2) }}</p>
+                                <a href="/products/{{ $product->slug }}" class="btn btn-primary rounded-1">Read More...</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
         <h2 class="title">Latest Products</h2>
-        <div class="row">
-            @foreach ($products->take(8) as $product)
-                <div class="col-4">
-                    <a href="products-detail.html"><img
-                            src="https://source.unsplash.com/420x420?{{ $product->category->name }}" alt="" /></a>
-                    <a href="products-detail.html">
-                        <h4>{{ $product->name }}</h4>
-                    </a>
-                    <p>{{ $product->category->name }}</p>
-                    <em>{{ $product->description }}</em>
-                    <sub>{{ $product->price }}</sub>
-                </div>
-            @endforeach
-        </div>
-    </section>
-
-    <!-- Offer -->
-    <section class="offer">
-        <div class="small-container">
+        <div class="container-fluid w-75">
             <div class="row">
-                <div class="col-2">
-                    <img src="Assets/exclusive.png" class="offer-img" alt="" />
+                <div class="d-flex justify-content-end">
+                    {{ $products->links() }}
                 </div>
-                <div class="col-2">
-                    <p>Exclusively Available on Felicia</p>
-                    <h1>Smart Band 4</h1>
-                    <small>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem
-                        perferendis perspiciatis recusandae officia commodi repellendus.
-                    </small>
-                    <br />
-                    <a href="" class="btn">Buy Now &#8594;</a>
+                @foreach ($products as $product)
+                    <div class="col col-md-6 col-lg-3 align-items-center justify-content-center my-1">
+                        <div class="card">
+                            <a href="/products?category={{ $product->category->name }}">
+                                <img src="https://source.unsplash.com/90x90?{{ $product->category->name }}"
+                                    class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $product->name }}</h5>
+                                <h6 class="card-category">
+                                    <a href="/products?category={{ $product->category->name }}">{{ $product->category->name }}</a>
+                                </h6>
+                                <p class="card-desc">{{ str_split($product->description, 75)[0] }}...</p>
+                                <p class="card-price">Rp. {{ number_format($product->price, 2) }}</p>
+                                <a href="/products/{{ $product->slug }}" class="btn btn-primary rounded-1">Read More...</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="row">
+                <div class="col col-lg-12 d-flex justify-content-end my-4">
+                    <a href="/products" class="btn btn-primary">View All Products &#8594;</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- testimonial -->
-    <section class="testimonial">
-        <div class="small-container">
-            <div class="row">
-                <div class="col-3">
-                    <i class="fa fa-quote-left"></i>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-                        quasi optio soluta perferendis similique amet architecto enim
-                        neque sunt dolorem?
-                    </p>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
-                    </div>
-                    <img src="Assets/user-1.png" alt="" />
-                    <h3>Sean Parker</h3>
-                </div>
-                <div class="col-3">
-                    <i class="fa fa-quote-left"></i>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-                        quasi optio soluta perferendis similique amet architecto enim
-                        neque sunt dolorem?
-                    </p>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
-                    </div>
-                    <img src="Assets/user-2.png" alt="" />
-                    <h3>Mike Smith</h3>
-                </div>
-                <div class="col-3">
-                    <i class="fa fa-quote-left"></i>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-                        quasi optio soluta perferendis similique amet architecto enim
-                        neque sunt dolorem?
-                    </p>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
-                    </div>
-                    <img src="Assets/user-3.png" alt="" />
-                    <h3>Mabel Joe</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- brands -->
-    <section class="brands">
-        <div class="small-container">
-            <h2 class="title">Collaborating Brands</h2>
-            <div class="row">
-                <div class="col-5">
-                    <img src="Assets/logo-godrej.png" alt="" />
-                </div>
-                <div class="col-5">
-                    <img src="Assets/logo-oppo.png" alt="" />
-                </div>
-                <div class="col-5">
-                    <img src="Assets/logo-coca-cola.png" alt="" />
-                </div>
-                <div class="col-5">
-                    <img src="Assets/logo-paypal.png" alt="" />
-                </div>
-                <div class="col-5">
-                    <img src="Assets/logo-philips.png" alt="" />
-                </div>
-            </div>
-        </div>
     </section>
 @endsection

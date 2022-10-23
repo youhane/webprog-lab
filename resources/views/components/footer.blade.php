@@ -1,37 +1,20 @@
 <div class="footer">
     <div class="container">
-        <div class="row">
-            <div class="footer-col-1">
-                <h3>Download Our App</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <div class="app-logo">
-                    <img src="Assets/play-store.png" alt="" />
-                    <img src="Assets/app-store.png" alt="" />
-                </div>
-            </div>
-            <div class="footer-col-2">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-md-between">
+            <div class="w-100 w-md-25">
                 <h1>Barbatos Shop</h1>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae id
                     architecto, in repellat ullam officia deserunt maiores!
                 </p>
             </div>
-            <div class="footer-col-3">
+            <div class="w-100 w-md-25 text-start text-md-end">
                 <h3>Useful Links</h3>
                 <ul>
-                    <li><a href="/products">Products</a></li>
-                    <li><a href="/category">Categories</a></li>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
-                </ul>
-            </div>
-            <div class="footer-col-4">
-                <h3>Follow us</h3>
-                <ul>
-                    <li>Facebook</li>
-                    <li>Twitter</li>
-                    <li>Instagram</li>
-                    <li>Youtube</li>
+                    <li class="my-1"><a class="text-decoration-none text-white" href="/products">Products</a></li>
+                    <li class="my-1"><a class="text-decoration-none text-white" href="/category">Categories</a></li>
+                    <li class="my-1"><a class="text-decoration-none text-white" href="/login">Login</a></li>
+                    <li class="my-1"><a class="text-decoration-none text-white" href="/register">Register</a></li>
                 </ul>
             </div>
         </div>

@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 @section('content')
     <h1>Create New Product</h1>
-    <form action="/admin/add" method="POST" class="form-registration">
+    <form action="/admin/add" method="POST" class="form-registration" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
@@ -31,6 +31,13 @@
                 @endforeach
             </select>
             @error('category_id')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept="image/png, image/jpeg, image/jpg" required>
+            @error('image')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>

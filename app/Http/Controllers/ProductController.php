@@ -10,15 +10,22 @@ class ProductController extends Controller
 {
     public function index()
     {
-        if (request('search')) {
-            $products = Product::where('name', 'like', '%' . request('search') . '%')->orWhere('description', 'like', '%' . request('search') . '%')->get()->groupBy('category.name');
-        } else {
-            $products = Product::all()->groupBy('category.name');
+        if (request()->search) {
+            $products = Product::where('name', 'like', '%' . request()->search . '%')->get();
+            $products = $products->groupBy('category.name');
+        }elseif (request()->category) {
+            $products = Product::whereHas('category', function ($query) {
+                $query->where('slug', request()->category);
+            })->get();
+            $products = $products->groupBy('category.name');
+        }else {
+            $products = Product::all();
+            $products = $products->groupBy('category.name');
         }
 
         return view('products.products', [
             'active' => 'products',
-            'products' => $products
+            'products' => $products,
         ]);
     }
 
@@ -35,17 +42,21 @@ class ProductController extends Controller
         $rules = [
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required',
             'category_id' => 'required',
+            'image' => 'image|required',
+            'price' => 'required',
         ];
 
         $validatedData = $request->validate($rules);
+
+        $validatedData['image'] = $request->file('image')->store('product-images');
 
         Product::create([
             'name' => $validatedData['name'],
             'slug' => str_replace(' ', '-', strtolower($validatedData['name'])),
             'description' => $validatedData['description'],
             'price' => $validatedData['price'],
+            'image' => $validatedData['image'],
             'category_id' => $validatedData['category_id'],
         ]);
 
