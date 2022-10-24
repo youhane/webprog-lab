@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,11 +21,13 @@ Route::post('/login', [UserController::class, 'authenticate'])->middleware('gues
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 Route::post('/register', [UserController::class, 'create'])->middleware('guest');
 
+Route::get('/products/add', [ProductController::class, 'create'])->middleware('admin');
+Route::post('/products/add', [ProductController::class, 'store'])->middleware('admin');
+
 Route::get('/products/{product:slug}', [ProductController::class, 'show']);
 Route::get('/products/{product:slug}/edit', [ProductController::class, 'edit']);
 Route::put('/products/{product:slug}/edit', [ProductController::class, 'update']);
 
-Route::get('/admin/manage', [AdminController::class, 'index'])->middleware('admin');
-Route::get('/admin/add', [ProductController::class, 'create'])->middleware('admin');
-Route::post('/admin/add', [ProductController::class, 'store'])->middleware('admin');
-Route::delete('/admin/delete/{product:id}', [ProductController::class, 'destroy'])->middleware('admin');
+Route::delete('/products/delete/{product:id}', [ProductController::class, 'destroy'])->middleware('admin');
+
+Route::get('/cart', [TransactionsController::class], 'index')->middleware('auth');

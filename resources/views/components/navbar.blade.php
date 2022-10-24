@@ -29,7 +29,7 @@
                                 class="bi bi-door-open"></i> Login</a>
                     </li>
                 @elseif (Auth::check())
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown me-5">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             {{ auth()->user()->name }}
@@ -42,8 +42,8 @@
                                 <li><a class="dropdown-item" href="/history"><i class="bi bi-clock-history"></i>
                                         History</a></li>
                             @elseif (auth()->user()->is_admin == 1)
-                                <li><a class="dropdown-item" href="/admin/manage"><i class="bi bi-columns-gap"></i> Manage
-                                        Products</a></li>
+                                <li><a class="dropdown-item" href="/products"><i class="bi bi-columns-gap"></i> Manage Products</a></li>
+                                <li><a class="dropdown-item" href="/products/add"><i class="bi bi-plus-square"></i> Create New Product</a></li>
                             @endif
                             <li>
                                 <form action="/logout" method="POST">

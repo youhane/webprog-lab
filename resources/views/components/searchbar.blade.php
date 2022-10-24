@@ -7,11 +7,14 @@
             @if (request('name'))
                 <input type="hidden" name="name" value="{{ request('name') }}">
             @endif
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search" name="search"
-                    value="{{ request('search') }}">
+            <div class="input-group d-flex">
+                <div class="d-flex border w-75">
+                    <input type="text" class="form-control border-0 rounded-0" placeholder="Search" name="search"
+                        value="{{ request('search') }}">
+                    <button type="button" class="bg-white px-3 border-0" onclick="this.form.search.value = ''"><i class="bi bi-x"></i></button>
+                </div>
                 <div class="input-group-append">
-                    <button class="btn rounded-2 border-0 btn-danger" type="submit">Search</button>
+                    <button class="btn rounded-0 border-0 btn-danger" type="submit">Search</button>
                 </div>
             </div>
         </form>

@@ -1,8 +1,8 @@
 @extends('layouts.base')
 @section('content')
     <section class="container-fluid px-5">
-        <div class="d-flex flex-column flex-lg-row gap-5">
-            <div class="w-100 w-lg-50">
+        <div class="d-flex flex-column align-items-center justify-content-center flex-lg-row gap-5">
+            <div>
                 @if ($product->image == null)
                     <img src="{{ asset('storage/product-images/no-image.png') }}" class="card-img-top" alt="...">
                 @else
@@ -13,13 +13,41 @@
                 <p>{{ $product->category->name }}</p>
                 <h1>{{ $product->name }}</h1>
                 <h4>Rp. {{ number_format($product->price, 2) }}</h4>
-                <label for="quantity">Quantity</label>
-                <input type="number" value="1" name="quantity" id="quantity" />
-                <h3>Product Details</h3>
-                <p>{{ $product->description }}</p>
-                <button class="btn btn-primary">
-                    <a href="" class="btn">Add to Cart</a>
-                </button>
+                <div class="form-group d-flex flex-column my-3">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" value="1" name="quantity" id="quantity" />
+                </div>
+                <div class="my-3">
+                    <h3>Product Details</h3>
+                    <p>{{ $product->description }}</p>
+                </div>
+                @if (Auth::guest())
+                    <li class="nav-item">
+                        <a class="nav-link {{ $active === 'register' ? 'active' : '' }}" href="/register"><i
+                                class="bi bi-plus-circle"></i> Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ $active === 'login' ? 'active' : '' }}" href="/login"><i
+                                class="bi bi-door-open"></i> Login</a>
+                    </li>
+                @elseif (Auth::check())
+                    @if (auth()->user()->is_admin == 0)
+                        <button class="btn btn-primary">
+                            <a href="/cart" class="btn">Add to Cart</a>
+                        </button>
+                    @elseif (auth()->user()->is_admin == 1)
+                        <div class="d-flex">
+                            <a href="/products/{{ $product->slug }}/edit" class="btn btn-primary">Edit
+                                Product</a>
+                            <form action="/products/delete/{{ $product->id }}" method="POST">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    @endif
+                @endif
+
             </div>
         </div>
     </section>
@@ -28,7 +56,7 @@
         <div class="">
             <div class="row">
                 <h2>Related Products</h2>
-                <p>View More</p>
+                <p><a href="/products" class="text-decoration-none text-black">View More</a></p>
             </div>
         </div>
         <div class="">

@@ -60,7 +60,7 @@ class ProductController extends Controller
             'category_id' => $validatedData['category_id'],
         ]);
 
-        return redirect('/admin/manage');
+        return redirect('/products');
     }
 
     public function show(Product $product)
@@ -98,12 +98,12 @@ class ProductController extends Controller
 
         Product::where('id', $product->id)->update($validatedData);
 
-        return redirect('/admin/manage');
+        return redirect('/products');
     }
 
     public function destroy(Product $product)
     {
         Product::destroy($product->id);
-        return redirect('/admin/manage');
+        return redirect('/products');
     }
 }
