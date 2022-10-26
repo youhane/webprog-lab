@@ -18,26 +18,25 @@
                     <p>{{ $product->description }}</p>
                 </div>
                 @if (Auth::guest())
-                    <li class="nav-item">
-                        <a class="nav-link {{ $active === 'register' ? 'active' : '' }}" href="/register"><i
-                                class="bi bi-plus-circle"></i> Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ $active === 'login' ? 'active' : '' }}" href="/login"><i
-                                class="bi bi-door-open"></i> Login</a>
-                    </li>
+                    <div class="d-flex flex-lg-row flex-column justify-content-between w-25">
+                        <a href="/register" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Register</a>
+                        <a href="/login" class="btn btn-primary"><i class="bi bi-door-open"></i> Login</a>
+                    </div>
                 @elseif (Auth::check())
                     @if (auth()->user()->is_admin == 0)
                         <form action="/cart" method="POST" class="d-flex justify-content-between w-50">
                             @csrf
-                            <input class="d-none" type="text" name="product_id" id="product_id"
-                                value="{{ $product->id }}">
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                             <div class="form-group d-flex flex-column mr-2">
                                 <label for="quantity">Quantity</label>
                                 <input type="number" value="1" name="quantity" id="quantity" />
                             </div>
                             <button type="submit" class="btn btn-primary">Add to Cart</button>
                         </form>
+                        @error('quantity')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     @elseif (auth()->user()->is_admin == 1)
                         <div class="d-flex">
                             <a href="/products/{{ $product->slug }}/edit" class="btn btn-primary">Edit

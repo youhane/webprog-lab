@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TransactionDetails;
+use App\Models\Transactions;
 use Illuminate\Http\Request;
 
 class TransactionDetailsController extends Controller
@@ -29,22 +30,24 @@ class TransactionDetailsController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        // Save to database
-        TransactionDetails::create([
+        $request->validate([
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $transactionDetails = TransactionDetails::create([
             'product_id' => $request->product_id,
             'quantity' => $request->quantity,
+        ]);
+
+        Transactions::create([
+            'user_id' => $request->user_id,
+            'transaction_details_id' => $transactionDetails->id,
+            'status' => 'cart',
         ]);
 
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\TransactionDetails  $transactionDetails
-     * @return \Illuminate\Http\Response
-     */
     public function show(TransactionDetails $transactionDetails)
     {
         //
