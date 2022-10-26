@@ -13,10 +13,6 @@
                 <p>{{ $product->category->name }}</p>
                 <h1>{{ $product->name }}</h1>
                 <h4>Rp. {{ number_format($product->price, 2) }}</h4>
-                <div class="form-group d-flex flex-column my-3">
-                    <label for="quantity">Quantity</label>
-                    <input type="number" value="1" name="quantity" id="quantity" />
-                </div>
                 <div class="my-3">
                     <h3>Product Details</h3>
                     <p>{{ $product->description }}</p>
@@ -32,9 +28,16 @@
                     </li>
                 @elseif (Auth::check())
                     @if (auth()->user()->is_admin == 0)
-                        <button class="btn btn-primary">
-                            <a href="/cart" class="btn">Add to Cart</a>
-                        </button>
+                        <form action="/cart" method="POST" class="d-flex justify-content-between w-50">
+                            @csrf
+                            <input class="d-none" type="text" name="product_id" id="product_id"
+                                value="{{ $product->id }}">
+                            <div class="form-group d-flex flex-column mr-2">
+                                <label for="quantity">Quantity</label>
+                                <input type="number" value="1" name="quantity" id="quantity" />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </form>
                     @elseif (auth()->user()->is_admin == 1)
                         <div class="d-flex">
                             <a href="/products/{{ $product->slug }}/edit" class="btn btn-primary">Edit

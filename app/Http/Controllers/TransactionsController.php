@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 
 class TransactionsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $transactions = Transactions::all();
+
+        return view('profile.cart', [
+            'active' => 'transactions',
+            'transactions' => $transactions,
+        ]);
     }
 
     /**
@@ -27,15 +27,9 @@ class TransactionsController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -81,5 +75,14 @@ class TransactionsController extends Controller
     public function destroy(Transactions $transactions)
     {
         //
+    }
+
+    public function history(){
+        $transactions = Transactions::all();
+
+        return view('profile.history', [
+            'active' => 'transactions',
+            'transactions' => $transactions,
+        ]);
     }
 }

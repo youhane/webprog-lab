@@ -9,7 +9,7 @@
                         Success isn't always about greatness. It's about happiness.
                         <br />Happiness makes the world beautiful.
                     </p>
-                    <a href="#categories" class="btn">Explore Now &#8594;</a>
+                    <a href="#categories" class="btn btn-primary">Explore Now &#8594;</a>
                 </div>
                 <div class="col col-sm-6">
                     <img src="Assets/image1.png" alt="" class="w-100" />
@@ -91,7 +91,8 @@
                                 </h6>
                                 <p class="card-desc">{{ str_split($product->description, 75)[0] }}...</p>
                                 <p class="card-price">Rp. {{ number_format($product->price, 2) }}</p>
-                                <a href="/products/{{ $product->slug }}" class="btn btn-primary rounded-1">Read More...</a>
+                                <a href="/products/{{ $product->slug }}" class="btn btn-primary rounded-1">Read
+                                    More...</a>
                             </div>
                         </div>
                     </div>

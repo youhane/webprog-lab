@@ -14,7 +14,7 @@
                     <button type="button" class="bg-white px-3 border-0" onclick="this.form.search.value = ''"><i class="bi bi-x"></i></button>
                 </div>
                 <div class="input-group-append">
-                    <button class="btn rounded-0 border-0 btn-danger" type="submit">Search</button>
+                    <button class="btn rounded-0 border-0 btn-primary" type="submit">Search</button>
                 </div>
             </div>
         </form>

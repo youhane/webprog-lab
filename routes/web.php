@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionDetailsController;
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +31,6 @@ Route::put('/products/{product:slug}/edit', [ProductController::class, 'update']
 
 Route::delete('/products/delete/{product:id}', [ProductController::class, 'destroy'])->middleware('admin');
 
-Route::get('/cart', [TransactionsController::class], 'index')->middleware('auth');
+Route::get('/cart', [TransactionsController::class, 'index'])->middleware('auth');
+Route::post('/cart', [TransactionDetailsController::class, 'store'])->middleware('auth');
+Route::get('/history', [TransactionsController::class, 'history'])->middleware('auth');
