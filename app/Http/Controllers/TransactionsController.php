@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TransactionDetails;
 use App\Models\Transactions;
 use Illuminate\Http\Request;
 
@@ -9,11 +10,16 @@ class TransactionsController extends Controller
 {
     public function index()
     {
-        $transactions = Transactions::all();
+        $transaction = Transactions::where('user_id', auth()->user()->id)
+            ->where('status', 'unpaid')
+            ->first();
+
+        $transactionDetails = TransactionDetails::where('transaction_id', $transaction->id)->get();
 
         return view('profile.cart', [
             'active' => 'transactions',
-            'transactions' => $transactions,
+            'transaction' => $transaction,
+            'transactionDetails' => $transactionDetails,
         ]);
     }
 

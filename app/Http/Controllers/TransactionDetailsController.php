@@ -34,16 +34,32 @@ class TransactionDetailsController extends Controller
             'quantity' => 'required|integer|min:1',
         ]);
 
-        $transactionDetails = TransactionDetails::create([
-            'product_id' => $request->product_id,
-            'quantity' => $request->quantity,
-        ]);
+        $transaction = Transactions::where('user_id', auth()->user()->id)
+            ->where('status', 'unpaid')
+            ->first();
+        if (!$transaction) {
+            $transaction = Transactions::create([
+                'user_id' => auth()->user()->id,
+                'status' => 'unpaid',
+            ]);
+        }
 
-        Transactions::create([
-            'user_id' => $request->user_id,
-            'transaction_details_id' => $transactionDetails->id,
-            'status' => 'cart',
-        ]);
+        $transactionDetail = TransactionDetails::where('transaction_id', $transaction->id)
+            ->where('product_id', $request->product_id)
+            ->first();
+
+        if ($transactionDetail) {
+            $transactionDetail->update([
+                'quantity' =>  $request->quantity,
+            ]);
+        } else {
+            TransactionDetails::create([
+                'transaction_id' => $transaction->id,
+                'product_id' => $request->product_id,
+                'quantity' => $request->quantity,
+                'price' => $request->price,
+            ]);
+        }
 
         return redirect()->back();
     }
@@ -53,13 +69,7 @@ class TransactionDetailsController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\TransactionDetails  $transactionDetails
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(TransactionDetails $transactionDetails)
+    public function edit(Request $request)
     {
         //
     }
@@ -85,5 +95,14 @@ class TransactionDetailsController extends Controller
     public function destroy(TransactionDetails $transactionDetails)
     {
         //
+    }
+
+    public function deleteOne(Request $request)
+    {
+        TransactionDetails::where('transaction_id', $request->transaction_id)
+            ->where('product_id', $request->product_id)
+            ->delete();
+
+        return redirect()->back();
     }
 }
