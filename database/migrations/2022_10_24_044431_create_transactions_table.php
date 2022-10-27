@@ -17,6 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('status');
+            $table->integer('total_price')->default(0);
             $table->timestamps();
         });
     }

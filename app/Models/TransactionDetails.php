@@ -18,8 +18,4 @@ class TransactionDetails extends Model
     public function product(){
         return $this->belongsTo(Product::class);
     }
-
-    public function getSubtotalAttribute(){
-        return $this->quantity * $this->price;
-    }
 }

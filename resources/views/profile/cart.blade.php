@@ -36,6 +36,7 @@
                                     </div>
                                 </form>
                                 <p>Price: Rp. {{ number_format($product->product->price, 2) }}</p>
+                                <p>Total: Rp. {{ number_format($product->product->price * $product->quantity, 2) }}</p>
                             </div>
                             <div class="col-md-3">
                                 <form action="/cart/delete" method="POST">
@@ -53,7 +54,10 @@
             <form action="/cart/pay" method="POST">
                 @csrf
                 <input type="hidden" name="transaction_id" value="{{ $transaction->id }}">
-                <button type="submit" class="btn btn-primary">Pay</button>
+                <div>
+
+                    <button type="submit" class="btn btn-primary">Pay</button>
+                </div>
             </form>
         </div>
     </div>

@@ -37,6 +37,7 @@ class TransactionDetailsController extends Controller
         $transaction = Transactions::where('user_id', auth()->user()->id)
             ->where('status', 'unpaid')
             ->first();
+
         if (!$transaction) {
             $transaction = Transactions::create([
                 'user_id' => auth()->user()->id,
@@ -60,6 +61,17 @@ class TransactionDetailsController extends Controller
                 'price' => $request->price,
             ]);
         }
+
+        $transactionDetails = TransactionDetails::where('transaction_id', $transaction->id)->get();
+
+        $total_price = 0;
+        foreach ($transactionDetails as $detail) {
+            $total_price += $detail->quantity * $detail->product->price;
+        }
+
+        $transaction->update([
+            'total_price' => $total_price
+        ]);
 
         return redirect()->back();
     }
@@ -103,6 +115,18 @@ class TransactionDetailsController extends Controller
             ->where('product_id', $request->product_id)
             ->delete();
 
+        $transaction = Transactions::find($request->transaction_id);
+        $transactionDetails = TransactionDetails::where('transaction_id', $transaction->id)->get();
+
+        $total_price = 0;
+        foreach ($transactionDetails as $detail) {
+            $total_price += $detail->quantity * $detail->product->price;
+        }
+
+        $transaction->update([
+            'total_price' => $total_price
+        ]);
+
         return redirect()->back();
     }
 
@@ -117,6 +141,18 @@ class TransactionDetailsController extends Controller
             ->update([
                 'quantity' => $request->quantity,
             ]);
+
+        $transaction = Transactions::find($request->transaction_id);
+        $transactionDetails = TransactionDetails::where('transaction_id', $transaction->id)->get();
+
+        $total_price = 0;
+        foreach ($transactionDetails as $detail) {
+            $total_price += $detail->quantity * $detail->product->price;
+        }
+
+        $transaction->update([
+            'total_price' => $total_price
+        ]);
 
         return redirect()->back();
     }
