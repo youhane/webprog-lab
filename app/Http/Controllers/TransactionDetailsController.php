@@ -105,4 +105,19 @@ class TransactionDetailsController extends Controller
 
         return redirect()->back();
     }
+
+    public function updateQuantity(Request $request)
+    {
+        $request->validate([
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        TransactionDetails::where('transaction_id', $request->transaction_id)
+            ->where('product_id', $request->product_id)
+            ->update([
+                'quantity' => $request->quantity,
+            ]);
+
+        return redirect()->back();
+    }
 }

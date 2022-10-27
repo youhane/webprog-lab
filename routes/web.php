@@ -33,5 +33,7 @@ Route::delete('/products/delete/{product:id}', [ProductController::class, 'destr
 
 Route::get('/cart', [TransactionsController::class, 'index'])->middleware('auth');
 Route::post('/cart', [TransactionDetailsController::class, 'store'])->middleware('auth');
-Route::put('/cart', [TransactionDetailsController::class, 'deleteOne'])->middleware('auth');
+Route::post('/cart/pay', [TransactionsController::class, 'pay'])->middleware('auth');
+Route::put('/cart/delete', [TransactionDetailsController::class, 'deleteOne'])->middleware('auth');
+Route::put('/cart/quantity', [TransactionDetailsController::class, 'updateQuantity'])->middleware('auth');
 Route::get('/history', [TransactionsController::class, 'history'])->middleware('auth');

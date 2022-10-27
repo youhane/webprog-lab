@@ -83,12 +83,26 @@ class TransactionsController extends Controller
         //
     }
 
-    public function history(){
-        $transactions = Transactions::all();
+    public function history()
+    {
+        $transactions = Transactions::where('user_id', auth()->user()->id)
+            ->where('status', 'paid')
+            ->get();
 
         return view('profile.history', [
             'active' => 'transactions',
             'transactions' => $transactions,
         ]);
+    }
+
+    public function pay(Request $request)
+    {
+        $transaction = Transactions::findOrFail($request->transaction_id);
+
+        $transaction->update([
+            'status' => 'paid',
+        ]);
+
+        return redirect('/products');
     }
 }
