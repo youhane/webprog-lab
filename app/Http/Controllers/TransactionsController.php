@@ -14,20 +14,12 @@ class TransactionsController extends Controller
             ->where('status', 'unpaid')
             ->first();
 
-        $transactionDetails = TransactionDetails::where('transaction_id', $transaction->id)->get();
-
         return view('profile.cart', [
             'active' => 'transactions',
             'transaction' => $transaction,
-            'transactionDetails' => $transactionDetails,
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -35,38 +27,19 @@ class TransactionsController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Transactions  $transactions
-     * @return \Illuminate\Http\Response
-     */
     public function show(Transactions $transactions)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Transactions  $transactions
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Transactions $transactions)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Transactions  $transactions
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Transactions $transactions)
     {
         //

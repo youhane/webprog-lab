@@ -45,7 +45,7 @@ class TransactionDetailsController extends Controller
             ]);
         }
 
-        $transactionDetail = TransactionDetails::where('transaction_id', $transaction->id)
+        $transactionDetail = TransactionDetails::where('transactions_id', $transaction->id)
             ->where('product_id', $request->product_id)
             ->first();
 
@@ -55,14 +55,14 @@ class TransactionDetailsController extends Controller
             ]);
         } else {
             TransactionDetails::create([
-                'transaction_id' => $transaction->id,
+                'transactions_id' => $transaction->id,
                 'product_id' => $request->product_id,
                 'quantity' => $request->quantity,
                 'price' => $request->price,
             ]);
         }
 
-        $transactionDetails = TransactionDetails::where('transaction_id', $transaction->id)->get();
+        $transactionDetails = TransactionDetails::where('transactions_id', $transaction->id)->get();
 
         $total_price = 0;
         foreach ($transactionDetails as $detail) {
@@ -86,24 +86,11 @@ class TransactionDetailsController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TransactionDetails  $transactionDetails
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, TransactionDetails $transactionDetails)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\TransactionDetails  $transactionDetails
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(TransactionDetails $transactionDetails)
     {
         //
@@ -111,12 +98,12 @@ class TransactionDetailsController extends Controller
 
     public function deleteOne(Request $request)
     {
-        TransactionDetails::where('transaction_id', $request->transaction_id)
+        TransactionDetails::where('transactions_id', $request->transaction_id)
             ->where('product_id', $request->product_id)
             ->delete();
 
         $transaction = Transactions::find($request->transaction_id);
-        $transactionDetails = TransactionDetails::where('transaction_id', $transaction->id)->get();
+        $transactionDetails = TransactionDetails::where('transactions_id', $transaction->id)->get();
 
         $total_price = 0;
         foreach ($transactionDetails as $detail) {
@@ -136,14 +123,14 @@ class TransactionDetailsController extends Controller
             'quantity' => 'required|integer|min:1',
         ]);
 
-        TransactionDetails::where('transaction_id', $request->transaction_id)
+        TransactionDetails::where('transactions_id', $request->transaction_id)
             ->where('product_id', $request->product_id)
             ->update([
                 'quantity' => $request->quantity,
             ]);
 
         $transaction = Transactions::find($request->transaction_id);
-        $transactionDetails = TransactionDetails::where('transaction_id', $transaction->id)->get();
+        $transactionDetails = TransactionDetails::where('transactions_id', $transaction->id)->get();
 
         $total_price = 0;
         foreach ($transactionDetails as $detail) {

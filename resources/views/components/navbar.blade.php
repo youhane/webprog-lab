@@ -35,20 +35,23 @@
                             {{ auth()->user()->name }}
                         </a>
                         <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/profile"><i class="bi bi-person-fill"></i>
+                                    Profile</a></li>
                             @if (auth()->user()->is_admin == 0)
-                                <li><a class="dropdown-item" href="/profile"><i class="bi bi-person-fill"></i>
-                                        Profile</a></li>
                                 <li><a class="dropdown-item" href="/cart"><i class="bi bi-basket"></i> Cart</a></li>
                                 <li><a class="dropdown-item" href="/history"><i class="bi bi-clock-history"></i>
                                         History</a></li>
                             @elseif (auth()->user()->is_admin == 1)
-                                <li><a class="dropdown-item" href="/products"><i class="bi bi-columns-gap"></i> Manage Products</a></li>
-                                <li><a class="dropdown-item" href="/products/add"><i class="bi bi-plus-square"></i> Create New Product</a></li>
+                                <li><a class="dropdown-item" href="/products"><i class="bi bi-columns-gap"></i> Manage
+                                        Products</a></li>
+                                <li><a class="dropdown-item" href="/products/add"><i class="bi bi-plus-square"></i>
+                                        Create New Product</a></li>
                             @endif
                             <li>
                                 <form action="/logout" method="POST">
                                     @csrf
-                                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-left"></i> Logout</button>
+                                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-left"></i>
+                                        Logout</button>
                                 </form>
                             </li>
                         </ul>

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <h1>Cart</h1>
-            @foreach ($transactionDetails as $product)
+            @foreach ($transaction->details as $product)
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
@@ -54,8 +54,8 @@
             <form action="/cart/pay" method="POST">
                 @csrf
                 <input type="hidden" name="transaction_id" value="{{ $transaction->id }}">
-                <div>
-
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3>Total: Rp. {{ number_format($transaction->total_price, 2) }}</h3>
                     <button type="submit" class="btn btn-primary">Pay</button>
                 </div>
             </form>
