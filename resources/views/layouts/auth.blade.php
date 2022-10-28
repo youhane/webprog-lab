@@ -17,7 +17,7 @@
 <body>
     @include('components.navbar')
     <div class="container">
-        <div class="row text-start mx-auto py-5">
+        <div class="row py-5 justify-content-center">
             <div class="col-md-7 col-lg-6">
                 @yield('content')
             </div>

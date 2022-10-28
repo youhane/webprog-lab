@@ -1,21 +1,18 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionDetailsController;
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [DashboardController::class, 'index']);
+Route::get('/', [ProductController::class, 'dashboard'])->name('home');
 
 Route::get('/products', [ProductController::class, 'index']);
-Route::get('/categories', [CategoryController::class, 'index']);
 
-Route::get('/register', [UserController::class, 'register'])->middleware('guest');
-Route::get('/login', [UserController::class, 'login'])->middleware('guest');
-Route::get('/profile', [UserController::class, 'edit'])->middleware('auth');
+Route::get('/register', [UserController::class, 'register'])->middleware('guest')->name('register');
+Route::get('/login', [UserController::class, 'login'])->middleware('guest')->name('login');
+Route::get('/profile', [UserController::class, 'edit'])->middleware('auth')->name('profile');
 Route::put('/profile/{user:id}', [UserController::class, 'update'])->middleware('auth');
 
 Route::post('/login', [UserController::class, 'authenticate'])->middleware('guest');

@@ -8,19 +8,29 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function dashboard()
+    {
+        $products = Product::all();
+        $products = $products->groupBy('category.name');
+
+        return view('home', [
+            'active' => 'dashboard',
+            'products' => $products,
+        ]);
+    }
+
     public function index()
     {
         if (request()->search) {
             $products = Product::where('name', 'like', '%' . request()->search . '%')->get();
             $products = $products->groupBy('category.name');
-        }elseif (request()->category) {
+        } elseif (request()->category) {
             $products = Product::whereHas('category', function ($query) {
                 $query->where('slug', request()->category);
             })->get();
             $products = $products->groupBy('category.name');
-        }else {
-            $products = Product::all();
-            $products = $products->groupBy('category.name');
+        } else {
+            return redirect()->route('home');
         }
 
         return view('products.products', [

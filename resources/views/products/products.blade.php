@@ -1,14 +1,9 @@
 @extends('layouts.base')
 @section('content')
-    <div class="container my-5">
+    <div class="container mb-5">
         <div class="row">
             @include('components.searchbar')
             @foreach ($products as $product)
-                <h2 class="my-5">
-                    <a href="/products?category={{ $product[0]->category->name }}">
-                        View All by {{ $product[0]->category->name }}
-                    </a>
-                </h2>
                 @foreach ($product->take(4) as $prod)
                     <div class="col col-md-6 col-lg-3 align-items-center justify-content-center my-1">
                         <div class="card">

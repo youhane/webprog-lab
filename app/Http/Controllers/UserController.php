@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transactions;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -237,9 +236,9 @@ class UserController extends Controller
 
         $validatedData['password'] = bcrypt($validatedData['password']);
 
-        $createdUser = User::create($validatedData);
+        User::create($validatedData);
 
-        return redirect('/login')->with('success', 'Registration Successfull! Please Login');
+        return redirect('/login')->with('success', 'Registration successful. Please login.');
     }
 
     public function authenticate(Request $request)
