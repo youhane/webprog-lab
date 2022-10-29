@@ -1,9 +1,16 @@
 @extends('layouts.base')
 @section('content')
     <section class="container my-5">
-        <div class="d-flex flex-column align-items-center justify-content-center py-5">
-            <img src="assets/logo.png" alt="logo" class="w-25" />
-            <h1>Barbatos Shop</h1>
+        <div class="d-flex flex-column align-items-center justify-content-center pb-5">
+            <div class="row d-flex align-items-center">
+                <div class="col">
+                    <h1 class="display-1">Barbatos Shop</h1>
+                    <p class="fst-italic text-muted">Barbatos Shop an E-Commerce Website where we provide everything you need with an affordable price! Clothes, Beauty, Camera, Hobbies and more. <br> But not food, somehow.</p>
+                </div>
+                <div class="col">
+                    <img src="assets/logo.png" alt="logo" />
+                </div>
+            </div>
             <a href="#products" class="jump text-black fs-2 mt-3">
                 <i class="bi bi-arrow-down"></i>
             </a>

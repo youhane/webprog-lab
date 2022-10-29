@@ -21,16 +21,14 @@ class ProductController extends Controller
 
     public function index()
     {
-        if (request()->search) {
-            $products = Product::where('name', 'like', '%' . request()->search . '%')->get();
-            $products = $products->groupBy('category.name');
-        } elseif (request()->category) {
+        if (request()->search && request()->search != ' ' ) {
+            $products = Product::where('name', 'like', '%' . request()->search . '%')->paginate(8);
+        } elseif (request()->category && request()->category != ' ') {
             $products = Product::whereHas('category', function ($query) {
                 $query->where('slug', request()->category);
-            })->get();
-            $products = $products->groupBy('category.name');
+            })->paginate(8);
         } else {
-            return redirect()->route('home');
+            $products = Product::paginate(8);
         }
 
         return view('products.products', [
