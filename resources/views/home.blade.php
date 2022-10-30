@@ -1,17 +1,42 @@
 @extends('layouts.base')
 @section('content')
-    <section class="container my-5">
-        <div class="d-flex flex-column align-items-center justify-content-center pb-5">
-            <div class="row d-flex align-items-center">
-                <div class="col">
-                    <h1 class="display-1">Barbatos Shop</h1>
-                    <p class="fst-italic text-muted">Barbatos Shop an E-Commerce Website where we provide everything you need with an affordable price! Clothes, Beauty, Camera, Hobbies and more. <br> But not food, somehow.</p>
+    <section class="container my-0 my-lg-5">
+        <div class="d-flex flex-column align-items-center pt-5 pt-lg-0 pb-5">
+            <div class="row d-flex flex-column-reverse flex-lg-row align-items-center">
+                <div class="col col-9 col-lg text-center text-lg-start">
+                    <img src="/assets/logo-big.png" alt="barbatos-shop">
+                    <p class="fst-italic text-muted subtitle">
+                        We always (try to) provide the best products for you.
+                    </p>
+                    <div class="mb-5 mt-4 mb-lg-0">
+                        <form action="/products" method="GET">
+                            @if (request('category'))
+                                <input type="hidden" name="category" value="{{ request('category') }}">
+                            @endif
+                            @if (request('name'))
+                                <input type="hidden" name="name" value="{{ request('name') }}">
+                            @endif
+                            <div class="input-group d-flex">
+                                <label for="search" class="text-muted">Find what you need here!</label>
+                                <div class="d-flex border border-2 w-100 ps-3 rounded-5">
+                                    <input type="text" class="form-control border-0 rounded-0" placeholder="Search" id="search" name="search" value="{{ request('search') }}">
+                                    <button type="button" class="bg-white px-3 border-0"
+                                        onclick="this.form.search.value = ''">
+                                        <i class="bi bi-x"></i>
+                                    </button>
+                                    <button class="btn border-0 btn-primary rounded-pill d-flex align-items-center gap-2" type="submit">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="col">
-                    <img src="assets/logo.png" alt="logo" />
+                <div class="col col-9 col-lg d-flex align-items-center justify-content-center">
+                    <img src="assets/logo.png" alt="logo" class="hero" />
                 </div>
             </div>
-            <a href="#products" class="jump text-black fs-2 mt-3">
+            <a href="#products" class="jump text-black fs-2 mt-5">
                 <i class="bi bi-arrow-down"></i>
             </a>
         </div>

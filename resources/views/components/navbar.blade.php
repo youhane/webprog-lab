@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg bg-light px-3 px-lg-5 py-3">
+<nav class="navbar navbar-expand-lg bg-light px-3 px-lg-5 py-3 sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">Barbatos Shop</a>
+        <a class="navbar-brand" href="/"><img src="/assets/logo-small.png" alt="barbatos-shop"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
