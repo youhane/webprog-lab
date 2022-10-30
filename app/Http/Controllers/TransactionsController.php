@@ -45,12 +45,6 @@ class TransactionsController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Transactions  $transactions
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Transactions $transactions)
     {
         //

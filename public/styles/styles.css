@@ -19,6 +19,14 @@ ul {
     z-index: 999;
 }
 
+body{
+    background: ghostwhite;
+}
+
+main{
+    min-height: calc(100vh - 9rem);
+}
+
 @keyframes jump {
     0% {
         transform: translateY(0);
@@ -48,8 +56,19 @@ ul {
     width: 75%;
 }
 
+.hero-logo{
+    width: auto;
+}
+
 .subtitle{
     font-size: 1rem !important;
+}
+
+.center-content{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @media only screen and (max-width: 768px) {
@@ -61,5 +80,14 @@ ul {
     }
     .subtitle{
         font-size: .95rem !important;
+    }
+    .hero-logo{
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 320px){
+    .hero-logo{
+        width: 90%;
     }
 }
