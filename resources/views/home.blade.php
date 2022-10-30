@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="col col-9 col-lg d-flex align-items-center justify-content-center">
-                    <img src="assets/logo.png" alt="logo" class="hero" />
+                    <img src="assets/hero.png" alt="logo" class="hero" />
                 </div>
             </div>
             <a href="#products" class="jump text-black fs-2 mt-5">
@@ -60,7 +60,12 @@
                                     <img src="{{ asset('storage/product-images/no-image.png') }}" class="card-img-top"
                                         alt="...">
                                 @else
-                                    <img src="{{ asset('storage/' . $prod->image) }}" class="card-img-top" alt="...">
+                                    @if (substr($prod->image, 0, 4) == 'http')
+                                        <img src="{{ $prod->image }}" class="card-img-top">
+                                    @else
+                                        <img src="{{ asset('storage/product-images/' . $prod->image) }}" class="card-img-top"
+                                            alt="...">
+                                    @endif
                                 @endif
                             </a>
                             <div class="card-body">

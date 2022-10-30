@@ -228,7 +228,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|min:5',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
+            'password' => 'required|alpha_num|min:8',
             'gender' => 'required',
             'dob' => 'required|date|before:today|after:01/01/1900',
             'country' => 'required',

@@ -34,3 +34,9 @@ Route::post('/cart/pay', [TransactionsController::class, 'pay'])->middleware('au
 Route::put('/cart/delete', [TransactionDetailsController::class, 'deleteOne'])->middleware('auth');
 Route::put('/cart/quantity', [TransactionDetailsController::class, 'updateQuantity'])->middleware('auth');
 Route::get('/history', [TransactionsController::class, 'history'])->middleware('auth');
+
+Route::fallback(function () {
+    return view('notfound', [
+        'active' => 'notfound',
+    ]);
+});

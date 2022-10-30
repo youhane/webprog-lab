@@ -41,13 +41,11 @@
                     <p>Gender</p>
                     <div class="d-flex gap-4">
                         <div class="d-flex gap-2">
-                            <input type="radio" class="form-check-input" value="male" id="male" name="gender"
-                                required>
+                            <input type="radio" class="form-check-input" value="male" id="male" name="gender" required {{ old('gender') == 'male' ? 'checked' : '' }} >
                             <label for="male" class="form-check-label">Male</label>
                         </div>
                         <div class="d-flex gap-2">
-                            <input type="radio" class="form-check-input" value="female" id="female" name="gender"
-                                required>
+                            <input type="radio" class="form-check-input" value="female" id="female" name="gender" required {{ old('gender') == 'female' ? 'checked' : '' }} >
                             <label for="female" class="form-check-label">Female</label>
                         </div>
                     </div>
