@@ -9,11 +9,6 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
         User::create([
@@ -114,49 +109,56 @@ class DatabaseSeeder extends Seeder
                 "slug" => "concealer",
                 "description" => "Concealer is a cosmetic product used to hide or reduce the appearance of skin blemishes, dark circles under the eyes, and other imperfections.",
                 "price" => 250000,
-                "category_id" => 1
+                "category_id" => 1,
+                'image' => 'https://image.femaledaily.com/dyn/640/images/prod-pics/product_1610536585_22_800x800.jpg'
             ],
             [
                 "name" => "Nail Polish",
                 "slug" => "nail-polish",
                 "description" => "Nail polish is a lacquer that can be applied to the human fingernail or toenail to decorate and protect the nail plates. The formulation has been revised repeatedly to enhance its decorative effects, and to suppress cracking and chipping.",
                 "price" => 100000,
-                "category_id" => 1
+                "category_id" => 1,
+                'image' => 'https://cf.shopee.co.id/file/49c4a38ffa1550199a8789bbd0308f39'
             ],
             [
                 "name" => "Lip Gloss",
                 "slug" => "lip-gloss",
                 "description" => "Lip gloss is a cosmetic product containing pigments, oils, waxes, and emollients that apply color, texture, and protection to the lips.",
                 "price" => 100000,
-                "category_id" => 1
+                "category_id" => 1,
+                'image' => 'https://cf.shopee.co.id/file/fce0230075749ff76801b872f428c229'
             ],
             [
                 "name" => "Lip Liner",
                 "slug" => "lip-liner",
                 "description" => "Lip liner is a cosmetic product used to define the lips. It is typically used to create a fuller appearance to the lips, or to prevent lipstick from feathering or bleeding outside the natural lip line.",
                 "price" => 100000,
-                "category_id" => 1
+                "category_id" => 1,
+                'image' => 'https://sdcdn.io/mac/us/mac_sku_M38050_1x1_0.png?width=1080&height=1080'
             ],
             [
                 "name" => "Eyebrow Pencil",
                 "slug" => "eyebrow-pencil",
                 "description" => "Eyebrow pencil is a cosmetic product used to fill in the eyebrows. It is typically used to create a fuller appearance to the eyebrows, or to prevent eyebrow makeup from feathering or bleeding outside the natural eyebrow line.",
                 "price" => 100000,
-                "category_id" => 1
+                "category_id" => 1,
+                'image' => 'https://cf.shopee.co.id/file/fa1ce31269bcbafa341b2ec99236089a'
             ],
             [
                 "name" => "Eyebrow Gel",
                 "slug" => "eyebrow-gel",
                 "description" => "Eyebrow gel is a cosmetic product used to set the eyebrows. It is typically used to create a fuller appearance to the eyebrows, or to prevent eyebrow makeup from feathering or bleeding outside the natural eyebrow line.",
                 "price" => 100000,
-                "category_id" => 1
+                "category_id" => 1,
+                'image' => 'https://cf.shopee.co.id/file/09bb598268456c640cae91f55e65796c'
             ],
             [
                 "name" => "Eyebrow Mascara",
                 "slug" => "eyebrow-mascara",
                 "description" => "Eyebrow mascara is a cosmetic product used to set the eyebrows. It is typically used to create a fuller appearance to the eyebrows, or to prevent eyebrow makeup from feathering or bleeding outside the natural eyebrow line.",
                 "price" => 100000,
-                "category_id" => 1
+                "category_id" => 1,
+                'image' => 'https://cf.shopee.co.id/file/510192c06611740ba4fb7978774b756c'
             ]
         ];
 
@@ -166,21 +168,24 @@ class DatabaseSeeder extends Seeder
                 "slug" => "dslr-camera",
                 "description" => "A digital single-lens reflex camera (also called a digital SLR or DSLR) is a digital camera that combines the optics and the mechanisms of a single-lens reflex camera with a digital imaging sensor, as opposed to photographic film.",
                 "price" => 10000000,
-                "category_id" => 2
+                "category_id" => 2,
+                'image' => 'https://cdn1.productnation.co/stg/sites/5/6049f4516f838.jpeg'
             ],
             [
                 "name" => "Mirrorless Camera",
                 "slug" => "mirrorless-camera",
                 "description" => "A mirrorless camera is a digital camera that lacks an optical viewfinder and a reflex mirror in the optical path. Instead, the image viewed through the lens is captured by an electronic image sensor.",
                 "price" => 5000000,
-                "category_id" => 2
+                "category_id" => 2,
+                'image' => 'https://www.popphoto.com/uploads/2021/06/25/377A3429.jpg?auto=webp&width=1440&height=960.48'
             ],
             [
                 "name" => "Point and Shoot Camera",
                 "slug" => "point-and-shoot-camera",
                 "description" => "A point-and-shoot camera is a still camera designed to be easy to use and compact. It is typically a small, lightweight camera with a fixed lens and a limited range of controls.",
                 "price" => 2000000,
-                "category_id" => 2
+                "category_id" => 2,
+                'image' => 'https://i.pcmag.com/imagery/reviews/05bltoeNph7qnCxFlRO8r3G-1..v1595602213.jpg'
             ],
             [
                 "name" => "Action Camera",

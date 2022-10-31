@@ -1,95 +1,74 @@
 @extends('layouts.base')
 @section('content')
-    <section class="container-fluid px-5">
-        <div class="d-flex flex-column align-items-center justify-content-center flex-lg-row gap-5">
-            <div>
-                @if ($product->image == null)
-                    <img src="{{ asset('storage/product-images/no-image.png') }}" class="card-img-top" alt="...">
-                @else
-                    <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="...">
-                @endif
-            </div>
-            <div class="d-flex flex-column justify-content-between align-items-start">
-                <p>{{ $product->category->name }}</p>
-                <h1>{{ $product->name }}</h1>
-                <h4>Rp. {{ number_format($product->price, 2) }}</h4>
-                <div class="my-3">
-                    <h3>Product Details</h3>
-                    <p>{{ $product->description }}</p>
-                </div>
-                @if (Auth::guest())
-                    <div class="d-flex flex-lg-row flex-column justify-content-between w-25">
-                        <a href="/register" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Register</a>
-                        <a href="/login" class="btn btn-primary"><i class="bi bi-door-open"></i> Login</a>
-                    </div>
-                @elseif (Auth::check())
-                    @if (auth()->user()->is_admin == 0)
-                        <form action="/cart" method="POST" class="d-flex justify-content-between w-50">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                            <div class="form-group d-flex flex-column mr-2">
-                                <label for="quantity">Quantity</label>
-                                <input type="number" value="1" name="quantity" id="quantity" />
-                            </div>
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
-                        </form>
-                        @error('quantity')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    @elseif (auth()->user()->is_admin == 1)
-                        <div class="d-flex">
-                            <a href="/products/{{ $product->slug }}/edit" class="btn btn-primary">Edit
-                                Product</a>
-                            <form action="/products/delete/{{ $product->id }}" method="POST">
-                                @method('delete')
-                                @csrf
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </div>
+    <section class="container p-5 w-75">
+        <div class="card rounded-4">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center flex-lg-row gap-5">
+                <div>
+                    @if ($product->image == null)
+                        <img src="{{ asset('storage/product-images/no-image.png') }}" class="product-img" alt="...">
+                    @else
+                        @if (substr($product->image, 0, 4) == 'http')
+                            <img src="{{ $product->image }}" class="product-img">
+                        @else
+                            <img src="{{ asset('storage/product-images/' . $product->image) }}" class="product-img"
+                                alt="...">
+                        @endif
                     @endif
-                @endif
-
+                </div>
+                <div class="d-flex flex-column justify-content-between align-items-start">
+                    <p>{{ $product->category->name }}</p>
+                    <h1>{{ $product->name }}</h1>
+                    <h4>Rp. {{ number_format($product->price, 2) }}</h4>
+                    <div class="my-3">
+                        <h3>Product Details</h3>
+                        <p>{{ $product->description }}</p>
+                    </div>
+                    @if (Auth::guest())
+                        <div class="d-flex flex-lg-row flex-column justify-content-between w-25">
+                            <a href="/register" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Register</a>
+                            <a href="/login" class="btn btn-primary"><i class="bi bi-door-open"></i> Login</a>
+                        </div>
+                    @elseif (Auth::check())
+                        @if (auth()->user()->is_admin == 0)
+                            <form action="/cart" method="POST" class="d-flex justify-content-between w-50">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                <div class="form-group d-flex flex-column mr-2">
+                                    <label for="quantity">Quantity</label>
+                                    <input type="number" value="1" name="quantity" id="quantity" />
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                            </form>
+                            @error('quantity')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        @elseif (auth()->user()->is_admin == 1)
+                            <div class="d-flex">
+                                <a href="/products/{{ $product->slug }}/edit" class="btn btn-primary">Edit
+                                    Product</a>
+                                <form action="/products/delete/{{ $product->id }}" method="POST">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        @endif
+                    @endif
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="container-fluid px-5">
-        <div class="">
-            <div class="row">
-                <h2>Related Products</h2>
-                <p><a href="/products" class="text-decoration-none text-black">View More</a></p>
-            </div>
-        </div>
-        <div class="">
-            <div class="row">
-                @foreach ($related_products as $products)
-                    <div class="col col-md-6 col-lg-3 align-items-center justify-content-center my-1">
-                        <div class="card">
-                            <a href="/products?category={{ $products->category->name }}">
-                                @if ($products->image == null)
-                                    <img src="{{ asset('storage/product-images/no-image.png') }}" class="card-img-top"
-                                        alt="...">
-                                @else
-                                    <img src="{{ asset('storage/' . $products->image) }}" class="card-img-top"
-                                        alt="...">
-                                @endif
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $products->name }}</h5>
-                                <h6 class="card-category">
-                                    <a
-                                        href="/products?category={{ $products->category->name }}">{{ $products->category->name }}</a>
-                                </h6>
-                                <p class="card-desc">{{ str_split($products->description, 75)[0] }}...</p>
-                                <p class="card-price">Rp. {{ number_format($products->price, 2) }}</p>
-                                <a href="/products/{{ $products->slug }}" class="btn btn-primary rounded-1">Read
-                                    More...</a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+    <section class="container px-5">
+        <div class="row">
+            <h2>Related Products</h2>
+            <p><a href="/products" class="text-decoration-none text-black">View More</a></p>
+            @foreach ($related_products->take(4) as $products)
+                <div class="col col-md-6 col-lg-3 align-items-center justify-content-center mt-1 mb-5">
+                    @include('components.card', ['prod' => $products])
+                </div>
+            @endforeach
         </div>
     </section>
 @endsection
