@@ -118,4 +118,9 @@ main{
     .hero-logo{
         width: 90%;
     }
+
+    .product-img{
+        height: 15rem;
+        
+    }
 }
