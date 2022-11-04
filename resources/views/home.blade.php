@@ -30,7 +30,7 @@
                     </a>
                 </h3>
                 @foreach ($product->take(4) as $prod)
-                    <div class="mx-auto col-9 col-md-6 col-lg-3 align-items-center justify-content-center mt-1 mb-5">
+                    <div class="mx-auto col-12 col-md-6 col-lg-3 align-items-center justify-content-center mt-1 mb-5">
                         @include('components.card')
                     </div>
                 @endforeach

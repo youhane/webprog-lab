@@ -1,10 +1,10 @@
 @extends('layouts.base')
 @section('content')
-    <div class="container">
+    <section class="container">
         @if (count($transactions))
             <h1 class="py-5">History</h1>
             @foreach ($transactions as $transaction)
-                <div class="card">
+                <div class="card mb-5">
                     <div class="card-header">
                         <h1>Transaction No. {{ $transaction->id }}</h1>
                         <h3>{{ $transaction->updated_at->toDayDateTimeString() }}</h3>
@@ -12,19 +12,12 @@
                     <div class="card-body">
                         <div>
                             @foreach ($transaction->details as $item)
-                                <div class="d-flex">
+                                <div class="d-flex gap-5">
                                     <div>
-                                        @if ($item->product->image == null)
-                                            <img src="{{ asset('storage/product-images/no-image.png') }}" class="cart-img"
-                                                alt="...">
-                                        @else
-                                            @if (substr($item->product->image, 0, 4) == 'http')
-                                                <img src="{{ $item->product->image }}" class="cart-img">
-                                            @else
-                                                <img src="{{ asset('storage/product-images/' . $item->product->image) }}"
-                                                    class="cart-img" alt="...">
-                                            @endif
-                                        @endif
+                                        @include('components.image', [
+                                            'image' => $item->product->image,
+                                            'alt' => $item->product->name,
+                                        ])
                                     </div>
                                     <div class="d-flex flex-column">
                                         <h3>{{ $item->product->name }}</h3>
@@ -38,8 +31,8 @@
                         <h1>Total Rp. {{ number_format($transaction->total_price, 2) }}</h1>
                     </div>
                 </div>
-    </div>
-    @endforeach
+            @endforeach
+    </section>
 @else
     <section class="container text-center d-flex align-items-center justify-content-center position-relative">
         <h1 class="center-content">Looks like you don't have any transactions yet, let me get you back <a

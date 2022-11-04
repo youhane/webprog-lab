@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -103,6 +104,11 @@ class ProductController extends Controller
         ];
 
         $validatedData = $request->validate($rules);
+
+        if ($request->file('image')) {
+            Storage::delete($product->image);
+            $validatedData['image'] = $request->file('image')->store('product-images');
+        }
 
         Product::where('id', $product->id)->update($validatedData);
 

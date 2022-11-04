@@ -9,17 +9,7 @@
                         <div>
                             <a href="/products/{{ $product->product->slug }}">
                                 <div>
-                                    @if ($product->product->image == null)
-                                        <img src="{{ asset('storage/product-images/no-image.png') }}" class="cart-img"
-                                            alt="...">
-                                    @else
-                                        @if (substr($product->product->image, 0, 4) == 'http')
-                                            <img src="{{ $product->product->image }}" class="cart-img">
-                                        @else
-                                            <img src="{{ asset('storage/product-images/' . $product->product->image) }}"
-                                                class="cart-img" alt="...">
-                                        @endif
-                                    @endif
+                                    @include('components.image', ['image' => $product->product->image, 'alt' => $product->product->name])
                                 </div>
                             </a>
                         </div>

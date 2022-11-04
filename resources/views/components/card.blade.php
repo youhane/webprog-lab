@@ -1,14 +1,6 @@
 <div class="card">
     <a href="/products?category={{ $prod->category->name }}">
-        @if ($prod->image == null)
-            <img src="{{ asset('storage/product-images/no-image.png') }}" class="card-img-top" alt="no-image">
-        @else
-            @if (substr($prod->image, 0, 4) == 'http')
-                <img src="{{ $prod->image }}" class="card-img-top" alt="{{ $prod->name }}">
-            @else
-                <img src="{{ asset('storage/product-images/' . $prod->image) }}" class="card-img-top" alt="{{ $prod->name }}">
-            @endif
-        @endif
+        @include('components.image', ['image' => $prod->image, 'alt' => $prod->name])
     </a>
     <div class="card-body gap-2">
         <h5 class="card-title">{{ $prod->name }}</h5>

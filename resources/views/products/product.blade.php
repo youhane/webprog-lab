@@ -1,19 +1,10 @@
 @extends('layouts.base')
 @section('content')
-    <section class="container py-3 p-lg-5 w-100 w-lg-75">
+    <section class="container py-3 p-lg-5 w-100 w-lg-75 my-3">
         <div class="card rounded-4">
             <div class="card-body d-flex flex-column align-items-center justify-content-center flex-lg-row gap-5">
                 <div>
-                    @if ($product->image == null)
-                        <img src="{{ asset('storage/product-images/no-image.png') }}" class="product-img" alt="...">
-                    @else
-                        @if (substr($product->image, 0, 4) == 'http')
-                            <img src="{{ $product->image }}" class="product-img">
-                        @else
-                            <img src="{{ asset('storage/product-images/' . $product->image) }}" class="product-img"
-                                alt="...">
-                        @endif
-                    @endif
+                    @include('components.image', ['image' => $product->image, 'alt' => $product->name])
                 </div>
                 <div class="d-flex flex-column justify-content-between align-items-start">
                     <p>{{ $product->category->name }}</p>
@@ -24,14 +15,14 @@
                         <p>{{ $product->description }}</p>
                     </div>
                     @if (Auth::guest())
-                        <div class="d-flex flex-lg-row flex-column justify-content-between w-25">
+                        <div class="d-flex justify-content-between gap-3">
                             <a href="/register" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Register</a>
                             <a href="/login" class="btn btn-primary"><i class="bi bi-door-open"></i> Login</a>
                         </div>
                     @elseif (Auth::check())
                         @if (auth()->user()->is_admin == 0)
                             <form action="/cart" method="POST"
-                                class="d-flex flex-column gap-3 align-items-center align-items-md-start mx-auto mx-md-0 justify-content-between w-md-50">
+                                class="d-flex flex-column flex-lg-row gap-3 mx-auto mx-md-0 justify-content-between w-md-50">
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
@@ -61,12 +52,12 @@
         </div>
     </section>
 
-    <section class="container px-5">
+    <section class="container px-lg-5">
         <div class="row">
             <h2>Related Products</h2>
             <p><a href="/products" class="text-decoration-none text-black">View More</a></p>
             @foreach ($related_products->take(4) as $products)
-                <div class="col col-md-6 col-lg-3 align-items-center justify-content-center mt-1 mb-5">
+                <div class="col-12 col-md-6 col-lg-3 align-items-center justify-content-center mb-3">
                     @include('components.card', ['prod' => $products])
                 </div>
             @endforeach
