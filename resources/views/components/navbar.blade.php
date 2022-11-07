@@ -19,7 +19,7 @@
 
     <div class="right">
         <button id="nav-button"><i class="fa-solid fa-2x fa-align-right"></i></button>
-        <div class="hidden menu" id="menu">
+        <div class="menu" id="menu">
             <ul>
                 <button id="nav-close"><i class="fa-solid fa-2x fa-xmark"></i></button>
                 <div class="nav-drop">
@@ -27,6 +27,7 @@
                         <li>
                             <a href="/register">Register</a>
                         </li>
+                        <hr/>
                         <li>
                             <a href="/login">Login</a>
                         </li>
