@@ -3,6 +3,9 @@
     scroll-behavior: smooth;
     transition: .2s all;
     scrollbar-width: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 ::-webkit-scrollbar {
@@ -14,9 +17,36 @@ ul {
     list-style-type: none;
 }
 
-.navbar {
-    box-shadow: 0 0 10px rgba(0,0,0,.1);
+button{
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .75rem 1rem;
     z-index: 999;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+
+nav div{
+    display: flex;
+}
+
+.nav-logo img{
+    width: 5rem;
+}
+
+.categories{
+    display: none;
 }
 
 body{
@@ -24,8 +54,35 @@ body{
     color: #3B3A38;
 }
 
-main{
-    min-height: calc(100vh - 9rem);
+
+.menu{
+    display: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    padding: 1rem;
+    background: white;
+    z-index: 999;
+}
+
+#nav-close{
+    position: absolute;
+    right: 1rem;
+}
+
+.nav-drop{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+.dropdown{
+    position: absolute;
+    top: 100%;
 }
 
 @keyframes jump {
@@ -45,76 +102,27 @@ main{
     cursor: pointer;
 }
 
-.searchbar{
-    width: 50%;
-}
-
-.form-control:focus{
-    box-shadow: none !important;
-}
-
-.hero{
-    width: 75%;
-}
-
-.hero-logo{
-    width: auto;
-}
-
-.subtitle{
-    font-size: 1rem !important;
-}
-
-.center-content{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.card-img-top{
-    width: 75%;
-    height: 10rem;
-    object-fit: cover;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-}
-
-.card-desc{
-    height: 10rem;
-    overflow: hidden;
-}
-
-.product-img{
-    width: 100%;
-    height: 20rem;
-    object-fit: cover;
-}
-
-@media only screen and (max-width: 768px) {
-    .hero{
-        width: 95%;
-    }
-    .searchbar{
-        width: 90%;
-    }
-    .subtitle{
-        font-size: .95rem !important;
-    }
-    .hero-logo{
-        width: 75%;
-    }
-    .product-img{
-        height: 15rem;
+@media screen and (min-width: 768px) {
+    .nav-drop{
+        margin-top: 3rem;
+        font-size: 1.5rem;
     }
 }
 
-@media only screen and (max-width: 320px){
-    .hero-logo{
-        width: 90%;
+@media screen and (min-width: 1024px){
+    #nav-button{
+        display: none;
     }
-    .product-img{
-        height: 10rem;
+
+    #nav-close{
+        display: none;
+    }
+
+    .menu{
+        display: none;
+    }
+
+    nav{
+        padding: 1rem 2rem;
     }
 }
