@@ -24,6 +24,20 @@ button {
     background: transparent;
 }
 
+input{
+    border: none;
+    outline: none;
+}
+
+input:focus{
+    border: none;
+    outline: none;
+}
+
+section{
+    padding: 3rem 1rem;
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -98,6 +112,62 @@ footer{
     font-weight: 700;
 }
 
+.hero-top{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.hero-logo{
+    width: 10rem;
+    margin: 1rem;
+}
+
+.hero-img{
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.down-arrow{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-top: 2rem;
+    width: 2rem;
+    height: 2rem;
+    animation: jump 1s infinite;
+    cursor: pointer;
+}
+
+.searchbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+}
+
+.searchbar input{
+    border-radius: 1rem 0 0 1rem;
+    width: 100%;
+    padding: .5rem;
+    padding-left: 1rem;
+}
+
+.searchbar button{
+    border-radius: 0 1rem 1rem 0;
+    background-color: #D4AFB9;
+    color: white;
+    padding: .5rem 1rem;
+}
+
 @keyframes jump {
     0% {
         transform: translateY(0);
@@ -110,11 +180,6 @@ footer{
     100% {
         transform: translateY(0);
     }
-}
-
-.jump {
-    animation: jump 1s infinite;
-    cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
