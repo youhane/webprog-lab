@@ -7,9 +7,9 @@
             <span>Categories</span>
             <div class="dropdown">
                 <ul>
-                    @foreach ($categories as $category)
+                    @foreach ($category as $cat)
                         <li>
-                            <a href="/products?category={{ $category->name }}">{{ $category->name }}</a>
+                            <a href="/products?category={{ $cat->name }}">{{ $cat->name }}</a>
                         </li>
                     @endforeach
                 </ul>
