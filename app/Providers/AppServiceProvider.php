@@ -26,7 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // View::share('categories', Category::all());
         view()->composer('*', function ($view) {
             $view->with('categories', Category::all());
         });

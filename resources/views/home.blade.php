@@ -18,18 +18,20 @@
 
     {{-- Products --}}
     <section id="products">
+        <div class="searchbar-container">
             @include('components.searchbar')
-            @foreach ($products as $product)
-                <h3>
-                    <a href="/products?category={{ $product[0]->category->slug }}">
-                        View All by {{ $product[0]->category->name }}
-                    </a>
-                </h3>
-                <div>
-                    @foreach ($product->take(4) as $prod)
-                        @include('components.card')
-                    @endforeach
-                </div>
-            @endforeach
+        </div>
+        @foreach ($products as $product)
+            <h3 class="category-title">
+                <a href="/products?category={{ $product[0]->category->slug }}">
+                    View All by {{ $product[0]->category->name }}
+                </a>
+            </h3>
+            <div>
+                @foreach ($product->take(4) as $prod)
+                    @include('components.card')
+                @endforeach
+            </div>
+        @endforeach
     </section>
 @endsection
