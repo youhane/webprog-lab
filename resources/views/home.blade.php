@@ -27,8 +27,8 @@
                     View All by {{ $product[0]->category->name }}
                 </a>
             </h3>
-            <div>
-                @foreach ($product->take(4) as $prod)
+            <div class="products-home">
+                @foreach ($product->take(6) as $prod)
                     @include('components.card')
                 @endforeach
             </div>
