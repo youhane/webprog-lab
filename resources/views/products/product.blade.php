@@ -1,64 +1,48 @@
 @extends('layouts.base')
 @section('content')
-    <section>
-        <div>
-            <div>
-                <div>
-                    @include('components.image', ['image' => $product->image, 'alt' => $product->name])
-                </div>
-                <div>
-                    <p>{{ $product->category->name }}</p>
-                    <h1>{{ $product->name }}</h1>
-                    <h4>Rp. {{ number_format($product->price, 2) }}</h4>
-                    <div>
-                        <h3>Product Details</h3>
-                        <p>{{ $product->description }}</p>
-                    </div>
-                    @if (Auth::guest())
-                        <div>
-                            <a href="/register"><i class="bi bi-plus-circle"></i> Register</a>
-                            <a href="/login"><i class="bi bi-door-open"></i> Login</a>
-                        </div>
-                    @elseif (Auth::check())
-                        @if (auth()->user()->is_admin == 0)
-                            <form action="/cart" method="POST">
-                                @csrf
-                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                                <div>
-                                    <label for="quantity">Quantity</label>
-                                    <input type="number" value="1" name="quantity" id="quantity" />
-                                </div>
-                                <button type="submit">Add to Cart</button>
-                            </form>
-                            @error('quantity')
-                                <div>{{ $message }}</div>
-                            @enderror
-                        @elseif (auth()->user()->is_admin == 1)
-                            <div>
-                                <a href="/products/{{ $product->slug }}/edit">Edit
-                                    Product</a>
-                                <form action="/products/delete/{{ $product->id }}" method="POST">
-                                    @method('delete')
-                                    @csrf
-                                    <button type="submit">Delete</button>
-                                </form>
-                            </div>
-                        @endif
-                    @endif
-                </div>
-            </div>
+    <section class="product-page">
+        <div class="product-page-image">
+            @include('components.image', ['image' => $product->image, 'alt' => $product->name])
         </div>
+        <form action="/cart" method="POST">
+            @csrf
+            <div class="product-card-title page">
+                <h5>{{ $product->name }}</h5>
+                <h6>{{ $product->category->name }}</h6>
+            </div>
+            <p class="product-page-desc">{{ $product->description }}</p>
+            <div class="product-page-amount">
+                @if (Auth::check())
+                    <div class="product-page-quantity">
+                        <button id="plus" class="plus">+</button>
+                        <input type="number" value="1" name="quantity" id="quantity" class="quantity">
+                        <button id="minus" class="minus">-</button>
+                    </div>
+                    @error('quantity')
+                        <div>{{ $message }}</div>
+                    @enderror
+                @endif
+                <h5>Rp. {{ number_format($product->price, 2) }}</h5>
+            </div>
+            <div class="product-page-btns">
+                @if (Auth::guest())
+                    <a href="/register" class="register">Register</a>
+                    <a href="/login" class="login">Login</a>
+                @elseif (Auth::check())
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                    <button type="submit">Add to Cart</button>
+                @endif
+            </div>
+        </form>
     </section>
 
     <section>
-        <div>
-            <h2>Related Products</h2>
-            <p><a href="/products">View More</a></p>
+        <h2>Related Products</h2>
+        <p><a href="/products">View More</a></p>
+        <div class="products-home">
             @foreach ($related_products->take(4) as $products)
-                <div>
-                    @include('components.card', ['prod' => $products])
-                </div>
+                @include('components.card', ['prod' => $products])
             @endforeach
         </div>
     </section>

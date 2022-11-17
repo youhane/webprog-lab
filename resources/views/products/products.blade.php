@@ -1,6 +1,6 @@
 @extends('layouts.base')
 @section('content')
-    <section class="products">
+    <section class="products page">
         <div class="searchbar-products">
             @include('components.searchbar')
         </div>
