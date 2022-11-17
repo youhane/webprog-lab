@@ -85,6 +85,10 @@ body {
     z-index: 999;
 }
 
+.menu ul{
+    margin-bottom: 0;
+}
+
 #nav-close {
     position: absolute;
     right: 1rem;
@@ -179,6 +183,7 @@ footer{
 }
 
 .category-title{
+    font-size: 1rem;
     color: #3B3A38;
     margin: 2rem 0;
     text-decoration: underline;
@@ -204,10 +209,12 @@ footer{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: .5rem;
 }
 
 .product-card-title h5{
-    font-size: .65rem;
+    font-size: .75rem;
+    font-weight: 700;
 }
 
 .product-card-title h6{
@@ -271,6 +278,20 @@ footer{
     gap: 1rem;
 }
 
+.pagination nav{
+    background: transparent;
+    box-shadow: none;
+    position: relative;
+    padding: 1rem 0;
+    z-index: 0;
+}
+
+.searchbar-products{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 @keyframes jump {
     0% {
         transform: translateY(0);
@@ -307,8 +328,16 @@ footer{
         width: 70%;
     }
 
+    .category-title{
+        font-size: 1.5rem;
+    }
+
+    .products{
+        padding: 3rem;
+    }
+
     .products-home{
-        grid-template-columns: auto auto auto auto;
+        grid-template-columns: auto auto auto;
     }
 
     .searchbar-container form{
@@ -317,7 +346,7 @@ footer{
 
     .product-card-desc{
         display: block;
-        font-size: .65rem;
+        font-size: .75rem;
         font-weight: 500;
         padding: .5rem 0;
     }
@@ -411,7 +440,11 @@ footer{
         width: 50%;
     }
 
-    #products{
+    .category-title{
+        font-size: 1.75rem;
+    }
+
+    .products{
         padding: 5rem;
     }
 
@@ -424,12 +457,12 @@ footer{
         max-width: 15rem;
     }
 
-    .product-card img{
-        max-height: 10rem;
+    .product-card-title h5{
+        font-size: 1rem;
     }
 
-    .product-card-title h5, .product-card-title h6{
-        font-size: 1rem;
+    .product-card-title h6{
+        font-size: .75rem
     }
 
     .product-card-desc{
@@ -437,5 +470,10 @@ footer{
         font-size: .75rem;
         font-weight: 500;
         padding: .5rem 0;
+    }
+
+    .searchbar-products{
+        justify-content: flex-end;
+        width: 100%;
     }
 }

@@ -17,7 +17,7 @@
     </section>
 
     {{-- Products --}}
-    <section id="products">
+    <section id="products" class="products">
         <div class="searchbar-container">
             @include('components.searchbar')
         </div>

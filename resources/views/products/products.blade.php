@@ -1,12 +1,20 @@
 @extends('layouts.base')
 @section('content')
-    <div class="searchbar-container">
-        @include('components.searchbar')
-    </div>
-    {{ $products->appends(request()->input())->links() }}
-    @foreach ($products as $prod)
-        <div>
-            @include('components.card')
+    <section class="products">
+        <div class="searchbar-products">
+            @include('components.searchbar')
         </div>
-    @endforeach
+        @if (count($products) < 1)
+            <h3 class="no-products">No products found</h3>
+        @else
+            <div class="pagination">
+                {{ $products->appends(request()->input())->links() }}
+            </div>
+            <div class="products-home">
+                @foreach ($products as $prod)
+                    @include('components.card')
+                @endforeach
+            </div>
+        @endif
+    </section>
 @endsection
