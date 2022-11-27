@@ -4,16 +4,16 @@
             <a href="/"><img src="/assets/logo-small.png" alt="barbatos-shop"></a>
         </div>
         <div class="categories">
-            <span>Categories</span>
-            <div class="dropdown">
-                <ul>
-                    @foreach ($categories as $category)
+            <button id="show-categories">Categories</button>
+            <ul class="dropdown" id="category-dropdown">
+                @foreach ($categories as $category)
+                    <a href="/products?category={{ $category->name }}">
                         <li>
-                            <a href="/products?category={{ $category->name }}">{{ $category->name }}</a>
+                            {{ $category->name }}
                         </li>
-                    @endforeach
-                </ul>
-            </div>
+                    </a>
+                @endforeach
+            </ul>
         </div>
     </div>
 
@@ -33,11 +33,11 @@
                         </li>
                     @elseif (Auth::check())
                         <li>
-                            <a href="#">
+                            <button id="show-nav">
                                 {{ auth()->user()->name }}
-                            </a>
+                            </button>
                         </li>
-                        <ul class="drop-nav">
+                        <ul class="drop-nav" id="drop-nav">
                             <li>
                                 <a href="/profile">Profile</a>
                             </li>

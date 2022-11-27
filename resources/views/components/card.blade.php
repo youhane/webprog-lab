@@ -1,5 +1,5 @@
 <div class="product-card">
-    <a href="/products?category={{ $prod->category->name }}">
+    <a href="/products/{{ $prod->slug }}">
         @include('components.image', ['image' => $prod->image, 'alt' => $prod->name])
     </a>
     <div>

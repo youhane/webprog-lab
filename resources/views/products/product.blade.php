@@ -16,9 +16,9 @@
             <div class="product-page-amount">
                 @if (Auth::check())
                     <div class="product-page-quantity">
-                        <button id="plus" class="plus">+</button>
-                        <input type="number" value="1" name="quantity" id="quantity" class="quantity">
                         <button id="minus" class="minus">-</button>
+                        <input type="number" value="1" name="quantity" id="quantity" class="quantity">
+                        <button id="plus" class="plus">+</button>
                     </div>
                     @error('quantity')
                         <div>{{ $message }}</div>
@@ -33,7 +33,7 @@
                 @elseif (Auth::check())
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                    <button type="submit">Add to Cart</button>
+                    <button class="submit" type="submit">Add to Cart</button>
                 @endif
             </div>
         </form>
