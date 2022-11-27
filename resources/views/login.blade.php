@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.auth')
 @section('content')
     <div class="card">
         <div class="card-header text-center">

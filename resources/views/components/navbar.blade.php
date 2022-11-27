@@ -27,7 +27,7 @@
                         <li>
                             <a href="/register">Register</a>
                         </li>
-                        <hr/>
+                        <hr />
                         <li>
                             <a href="/login">Login</a>
                         </li>
@@ -36,33 +36,33 @@
                             <a href="#">
                                 {{ auth()->user()->name }}
                             </a>
-                            <ul>
-                                <li>
-                                    <a href="/profile">Profile</a>
-                                </li>
-                                @if (auth()->user()->is_admin == 0)
-                                    <li>
-                                        <a href="/cart">Cart</a>
-                                    </li>
-                                    <li>
-                                        <a href="/history">History</a>
-                                    </li>
-                                @elseif (auth()->user()->is_admin == 1)
-                                    <li>
-                                        <a href="/products">Manage Products</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/add">Create New Product</a>
-                                    </li>
-                                @endif
-                                <li>
-                                    <form action="/logout" method="POST">
-                                        @csrf
-                                        <button type="submit">Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
                         </li>
+                        <ul class="drop-nav">
+                            <li>
+                                <a href="/profile">Profile</a>
+                            </li>
+                            @if (auth()->user()->is_admin == 0)
+                                <li>
+                                    <a href="/cart">Cart</a>
+                                </li>
+                                <li>
+                                    <a href="/history">History</a>
+                                </li>
+                            @elseif (auth()->user()->is_admin == 1)
+                                <li>
+                                    <a href="/products">Manage Products</a>
+                                </li>
+                                <li>
+                                    <a href="/products/add">Create New Product</a>
+                                </li>
+                            @endif
+                            <li>
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <button type="submit">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
                     @endif
                 </div>
             </ul>

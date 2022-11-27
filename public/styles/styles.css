@@ -225,10 +225,15 @@ footer{
     font-size: .65rem;
 }
 
-.product-card-title h6:hover a{
+.product-card-title h6:hover{
     text-decoration: none;
     color: black;
     background: #FFC4B7;
+}
+
+.product-card-title a{
+    text-decoration: none;
+    color: black;
 }
 
 .product-card-desc{
@@ -252,7 +257,15 @@ footer{
     gap: .25rem;
 }
 
-.product-card-buttons a{
+.product-card-buttons div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .25rem;
+}
+
+.product-card-buttons a, .product-card-buttons div a, .product-card-buttons div form{
     border-radius: .4rem;
     font-size: .75rem;
     color: white;
@@ -277,6 +290,11 @@ footer{
 
 .product-card-delete{
     background: #D84646;
+}
+
+.product-card-delete button{
+    color: white;
+    font-weight: 600;
 }
 
 .products-home{
@@ -305,7 +323,7 @@ footer{
 }
 
 .product-page img{
-    width: 100%;
+    width: 15rem;
     height: 100%;
     object-fit: cover;
     display: block;
@@ -372,6 +390,10 @@ footer{
     background: #AFA761;
 }
 
+.drop-nav *{
+    margin: 1rem 0;
+}
+
 @keyframes jump {
     0% {
         transform: translateY(0);
@@ -430,6 +452,45 @@ footer{
         font-weight: 500;
         padding: .5rem 0;
     }
+
+    .product-page{
+        flex-direction: row;
+        gap: 3rem;
+        padding: 3rem;
+    }
+
+    .product-card-title.page{
+        margin-top: 0rem;
+    }
+
+    .product-page-image{
+        width: auto;
+    }
+
+    .product-page-amount{
+        flex-direction: row;
+        justify-content: flex-end;
+        margin: 1.5rem 0rem;
+    }
+
+    .product-page-amount h5{
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        font-size: 1rem;
+    }
+
+    .product-page-btns{
+        flex-direction: row;
+    }
+
+    .product-page-btns a{
+        border-radius: .75rem;
+    }
+
+    .related-products{
+        padding: 0rem 3rem;
+        padding-bottom: 3rem;
+    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -474,6 +535,19 @@ footer{
 
     nav {
         padding: 1rem 2rem;
+    }
+
+    .drop-nav{
+        background: red;
+        position: absolute;
+        top: 3rem;
+        right: 0;
+        flex-direction: column;
+    }
+
+    .drop-nav *{
+        display: none;
+        margin-top: 0;
     }
 
     .hero-top{
@@ -561,10 +635,35 @@ footer{
         padding-top: 2.5rem;
         padding-bottom: 2.5rem;
     }
+
+    .product-page{
+        padding: 3rem 10rem;
+    }
+
+    .product-page-amount{
+        margin: 2.5rem 0rem;
+    }
+
+    .related-products{
+        padding: 0rem 5rem;
+        padding-bottom: 3rem;
+    }
 }
 
 @media screen and (min-width: 1280px){
     .products-home{
         grid-template-columns: auto auto auto auto auto auto;
+    }
+
+    .product-page{
+        padding: 5rem 15rem;
+    }
+
+    .product-page-image{
+        width: auto;
+    }
+
+    .product-page-desc{
+        font-size: 1rem;
     }
 }

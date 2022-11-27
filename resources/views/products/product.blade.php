@@ -8,7 +8,9 @@
             @csrf
             <div class="product-card-title page">
                 <h5>{{ $product->name }}</h5>
-                <h6>{{ $product->category->name }}</h6>
+                <h6>
+                    <a href="/products?category={{ $product->category->slug }}">{{ $product->category->name }}</a>
+                </h6>
             </div>
             <p class="product-page-desc">{{ $product->description }}</p>
             <div class="product-page-amount">
@@ -37,11 +39,11 @@
         </form>
     </section>
 
-    <section>
+    <section class="related-products">
         <h2>Related Products</h2>
         <p><a href="/products">View More</a></p>
         <div class="products-home">
-            @foreach ($related_products->take(4) as $products)
+            @foreach ($related_products->take(6) as $products)
                 @include('components.card', ['prod' => $products])
             @endforeach
         </div>
