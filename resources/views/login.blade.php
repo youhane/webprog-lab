@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-header text-center">
             <h3>Login</h3>
-            <p style="margin: 0">Don't have an account? <a href="/register">Register Here</a></p>
+            <p style="margin: 0">Don't have an account? <a href="/register" style="text-decoration: underline;">Register Here</a></p>
         </div>
         <div class="card-body">
             <form action="/login" method="POST" class="form-registration">

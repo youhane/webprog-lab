@@ -5,6 +5,8 @@ const showNav = document.getElementById('show-nav')
 const dropNav = document.getElementById('drop-nav')
 const showCategories = document.getElementById('show-categories')
 const categoryDropdown = document.getElementById('category-dropdown')
+const imageInput = document.getElementById('image-input')
+const imagePreview = document.getElementById('image-preview')
 
 navButton.addEventListener('click', () => {
     menu.style.display = 'block'
@@ -12,6 +14,21 @@ navButton.addEventListener('click', () => {
 
 closeNavButton.addEventListener('click', () => {
     menu.style.display = 'none'
+})
+
+let categoriesOpen = false
+showCategories.addEventListener('click', () => {
+    if (!categoriesOpen) {
+        categoryDropdown.style.opacity = '1'
+        showCategories.style.borderBottom = '1px solid #000'
+        categoryDropdown.style.visibility = 'visible'
+        categoriesOpen = true
+    } else {
+        categoryDropdown.style.opacity = '0'
+        showCategories.style.borderBottom = 'none'
+        categoryDropdown.style.visibility = 'hidden'
+        categoriesOpen = false
+    }
 })
 
 let navOpen = false
@@ -25,16 +42,13 @@ showNav.addEventListener('click', () => {
     }
 })
 
-let categoriesOpen = false
-showCategories.addEventListener('click', () => {
-    console.log('clicked')
-    if (!categoriesOpen) {
-        categoryDropdown.style.opacity = '1'
-        showCategories.style.borderBottom = '1px solid #000'
-        categoriesOpen = true
-    } else {
-        categoryDropdown.style.opacity = '0'
-        showCategories.style.borderBottom = 'none'
-        categoriesOpen = false
+imageInput.addEventListener('change', () => {
+    const file = imageInput.files[0]
+    if (file) {
+        const reader = new FileReader()
+        reader.addEventListener('load', () => {
+            imagePreview.setAttribute('src', reader.result)
+        })
+        reader.readAsDataURL(file)
     }
 })

@@ -127,6 +127,7 @@ body {
     left: 0;
     top: 100%;
     opacity: 0;
+    visibility: hidden;
 }
 
 .dropdown li{
@@ -315,13 +316,25 @@ footer{
     background: #008000;
 }
 
-.product-card-delete{
-    background: #D84646;
+.product-card-edit:hover{
+    background: #006400 !important;
 }
 
-.product-card-delete button{
+
+.product-card-delete{
+    background: #D84646;
     color: white;
     font-weight: 600;
+    border-radius: .4rem;
+    font-size: .75rem;
+    text-align: center;
+    font-weight: 600;
+    padding: .5rem 0;
+    width: 100%;
+}
+
+.product-card-delete:hover{
+    background: #B03A3A;
 }
 
 .products-home{
@@ -426,6 +439,10 @@ footer{
     margin: 1rem 0;
 }
 
+.drop-nav *:hover{
+    background: rgb(194, 194, 194);
+}
+
 .product-page-quantity{
     display: flex;
     align-items: center;
@@ -464,6 +481,13 @@ footer{
 
 .product-page-quantity .plus:hover{
     background: #9CD27E;
+}
+
+.currentImg *, .newImg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-bottom: 1rem;
 }
 
 @keyframes jump {

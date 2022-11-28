@@ -16,10 +16,10 @@
             @if (Auth::check() && auth()->user()->is_admin == 1)
                 <div>
                     <a class="product-card-edit" href="/products/{{ $prod->slug }}/edit">Edit</a>
-                    <form class="product-card-delete" action="/products/delete/{{ $prod->id }}" method="POST">
+                    <form action="/products/delete/{{ $prod->id }}" method="POST">
                         @method('delete')
                         @csrf
-                        <button type="submit">Delete</button>
+                        <button class="product-card-delete" type="submit">Delete</button>
                     </form>
                 </div>
             @endif
