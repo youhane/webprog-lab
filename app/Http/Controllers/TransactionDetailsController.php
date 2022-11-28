@@ -73,7 +73,7 @@ class TransactionDetailsController extends Controller
             'total_price' => $total_price
         ]);
 
-        return redirect()->back();
+        return redirect('/cart');
     }
 
     public function show(TransactionDetails $transactionDetails)

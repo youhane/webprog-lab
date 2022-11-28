@@ -16,9 +16,9 @@
             <div class="product-page-amount">
                 @if (Auth::check())
                     <div class="product-page-quantity">
-                        <button id="minus" class="minus">-</button>
+                        <button type="button" id="minus" class="minus">-</button>
                         <input type="number" value="1" name="quantity" id="quantity" class="quantity">
-                        <button id="plus" class="plus">+</button>
+                        <button type="button" id="plus" class="plus">+</button>
                     </div>
                     @error('quantity')
                         <div>{{ $message }}</div>
