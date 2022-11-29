@@ -2,7 +2,6 @@
 @section('content')
     <section class="container">
         @if (count($transactions))
-            <h1 class="py-5">History</h1>
             @foreach ($transactions as $transaction)
                 <div class="card mb-5">
                     <div class="card-header">
