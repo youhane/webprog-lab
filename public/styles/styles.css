@@ -676,6 +676,126 @@ footer{
     width: 100%;
 }
 
+.history-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: #FFE7D4;
+    border: 1px solid black;
+    border-radius: 1rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.history-item-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.history-item-header h5{
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.transaction-items{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.transaction-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+    background: #FFE7D4;
+    border: 1px solid black;
+    border-radius: 1rem;
+    width: 100%;
+    margin-bottom: .5rem;
+}
+
+.transaction-item-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.transaction-item-title{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.transaction-item-title h6{
+    font-size: .75rem;
+}
+
+.transaction-item-title h5{
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.transaction-item-title h6{
+    background: #FFDDD2;
+    font-weight: 500;
+    padding: .25rem .4rem;
+    border-radius: 1rem;
+    font-size: .65rem;
+}
+
+.transaction-item-left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.transaction-item-left div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: #D0B8A8;
+    border-radius: .4rem;
+    font-size: .75rem;
+    text-align: center;
+    font-weight: 700;
+    padding: .5rem .75rem;
+    gap: .5rem;
+}
+
+.transaction-item-left div *{
+    margin: 0;
+}
+
+.transaction-item-left div h6{
+    font-size: .75rem;
+}
+
+.transaction-item-left div h5{
+    font-size: .95rem;
+    font-weight: 600;
+}
+
+.history-paid{
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: .5rem;
+}
+
 @keyframes jump {
     0% {
         transform: translateY(0);
@@ -852,6 +972,45 @@ footer{
         flex-direction: column;
         align-items: center;
         justify-content: center;
+    }
+
+    .history-item{
+        padding: 1rem 3rem;
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+    }
+
+    .transaction-item-right{
+        width: fit-content;
+    }
+
+    .transaction-item-image{
+        max-width: 15rem;
+    }
+
+    .transaction-item-image img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        margin-bottom: 1rem;
+        margin: auto 0;
+    }
+
+    .transaction-item-title{
+        margin-top: 1rem;
+    }
+
+    .transaction-item-title h5{
+        font-size: 1.25rem;
+    }
+
+    .transaction-item-title h6{
+        font-size: .75rem;
+    }
+
+    .transaction-item-total h5{
+        font-size: 1.25rem !important;
     }
 }
 
@@ -1040,6 +1199,22 @@ footer{
     .cart-total{
         width: 75%;
         margin: 0 auto;
+    }
+
+    .history-item-header h5{
+        font-size: 1.5rem;
+    }
+
+    .history-item-header h6{
+        font-size: 1.25rem;
+    }
+
+    .transaction-item-left{
+        flex-direction: row;
+    }
+
+    .transaction-item-price h5{
+        font-size: 1.25rem !important;
     }
 }
 
