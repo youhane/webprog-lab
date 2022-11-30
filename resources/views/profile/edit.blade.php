@@ -8,6 +8,7 @@
         <div class="card-body">
             <form action="/profile/{{ $user->id }}" method="POST" class="form-registration">
                 @csrf
+                @method('PUT')
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" required value="{{ $user->name }}">
@@ -24,8 +25,8 @@
                 </div>
                 <div class="mb-3">
                     <p>Gender</p>
-                    <div class="d-flex gap-4">
-                        <div class="d-flex gap-2">
+                    <div class="d-flex row w-50 mx-auto gap-4">
+                        <div class="d-flex col gap-2">
                             @if ($user->gender == 'male')
                                 <input type="radio" class="form-check-input" value="male" id="male" name="gender" required
                                     checked>
@@ -35,7 +36,7 @@
                             @endif
                             <label for="male" class="form-check-label">Male</label>
                         </div>
-                        <div class="d-flex gap-2">
+                        <div class="d-flex col gap-2">
                             @if ($user->gender == 'female')
                                 <input type="radio" class="form-check-input" value="female" id="female" name="gender" required
                                     checked>

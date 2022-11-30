@@ -29,6 +29,10 @@ showCategories && showCategories.addEventListener('click', () => {
         showCategories.style.borderBottom = '1px solid #000'
         categoryDropdown.style.visibility = 'visible'
         categoriesOpen = true
+
+        dropNav.style.opacity = '0'
+        dropNav.style.visibility = 'hidden'
+        navOpen = false
     } else {
         categoryDropdown.style.opacity = '0'
         showCategories.style.borderBottom = 'none'
@@ -41,9 +45,16 @@ let navOpen = false
 showNav && showNav.addEventListener('click', () => {
     if (!navOpen) {
         dropNav.style.opacity = '1'
+        dropNav.style.visibility = 'visible'
         navOpen = true
+
+        categoryDropdown.style.opacity = '0'
+        showCategories.style.borderBottom = 'none'
+        categoryDropdown.style.visibility = 'hidden'
+        categoriesOpen = false
     } else {
         dropNav.style.opacity = '0'
+        dropNav.style.visibility = 'hidden'
         navOpen = false
     }
 })
@@ -74,7 +85,6 @@ for (let i = 0; i < plusCart.length; i++) {
         quantityCart[i].value = parseInt(quantityCart[i].value) + 1
     })
 }
-
 
 for (let i = 0; i < minusCart.length; i++) {
     minusCart[i].addEventListener('click', () => {

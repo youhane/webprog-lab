@@ -8,5 +8,6 @@
             @include('components.transactionitem', ['item' => $item])
         @endforeach
     </div>
+    <h6 class="history-items">{{ $numberOfItems[$transaction->id] }} Items</h6>
     <h6 class="history-paid">Paid {{ number_format($transaction->total_price, 2) }}</h6>
 </div>

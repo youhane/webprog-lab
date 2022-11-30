@@ -796,6 +796,15 @@ footer{
     margin-top: .5rem;
 }
 
+.back-link{
+    text-decoration: underline;
+}
+
+.back-link:hover{
+    text-decoration: underline;
+    font-style: italic;
+}
+
 @keyframes jump {
     0% {
         transform: translateY(0);
@@ -1064,6 +1073,7 @@ footer{
         right: 0;
         flex-direction: column;
         opacity: 0;
+        visibility: hidden;
     }
 
     .drop-nav *{
@@ -1133,7 +1143,6 @@ footer{
 
     .product-card{
         padding: 1rem;
-        max-width: 15rem;
     }
 
     .product-card-title h5{
@@ -1220,7 +1229,7 @@ footer{
 
 @media screen and (min-width: 1280px){
     .products-home{
-        grid-template-columns: auto auto auto auto auto auto;
+        grid-template-columns: auto auto auto auto;
     }
 
     .product-page{

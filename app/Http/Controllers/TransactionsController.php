@@ -56,9 +56,19 @@ class TransactionsController extends Controller
             ->where('status', 'paid')
             ->get();
 
+        $numberOfItems = [];
+        foreach ($transactions as $transaction) {
+            $transactionDetails = TransactionDetails::where('transactions_id', $transaction->id)->get();
+            $numberOfItems[$transaction->id] = 0;
+            foreach ($transactionDetails as $transactionDetail) {
+                $numberOfItems[$transaction->id] += $transactionDetail->quantity;
+            }
+        }
+
         return view('profile.history', [
             'active' => 'transactions',
             'transactions' => $transactions,
+            'numberOfItems' => $numberOfItems,
         ]);
     }
 

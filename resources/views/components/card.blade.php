@@ -12,8 +12,9 @@
         <p class="product-card-desc">{{ Str::limit($prod->description, 100) }}</p>
         <p class="product-card-price">Rp. {{ number_format($prod->price, 2) }}</p>
         <div class="product-card-buttons">
-            <a class="product-card-view-more" href="/products/{{ $prod->slug }}">View More...</a>
-            @if (Auth::check() && auth()->user()->is_admin == 1)
+            @if (Auth::guest() || auth()->user()->is_admin == 0)
+                <a class="product-card-view-more" href="/products/{{ $prod->slug }}">View More...</a>
+            @elseif (Auth::check() && auth()->user()->is_admin == 1)
                 <div>
                     <a class="product-card-edit" href="/products/{{ $prod->slug }}/edit">Edit</a>
                     <form action="/products/delete/{{ $prod->id }}" method="POST">
