@@ -69,7 +69,7 @@ class ProductController extends Controller
             'category_id' => $validatedData['category_id'],
         ]);
 
-        return redirect('/products');
+        return redirect()->back()->with('success', 'Product added successfully!');
     }
 
     public function show(Product $product)
@@ -112,7 +112,7 @@ class ProductController extends Controller
 
         Product::where('id', $product->id)->update($validatedData);
 
-        return redirect('/products');
+        return redirect()->back()->with('success', 'Product updated successfully!');
     }
 
     public function destroy(Product $product)

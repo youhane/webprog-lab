@@ -11,15 +11,15 @@
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name"
-                        required value="{{ old('name') }}">
+                        value="{{ old('name') }}">
                     @error('name')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email"
-                        required value="{{ old('email') }}">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter Your Email"
+                        value="{{ old('email') }}">
                     @error('email')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -27,7 +27,7 @@
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password"
-                        placeholder="Enter Your Password" required>
+                        placeholder="Enter Your Password">
                     @error('password')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -35,32 +35,36 @@
                 <div class="mb-3">
                     <label for="confirm_pass" class="form-label">Confirm Password</label>
                     <input type="password" class="form-control" id="confirm_pass" name="confirm_pass"
-                        placeholder="Re-type Your Password" required>
+                        placeholder="Re-type Your Password">
                 </div>
                 <div class="mb-3">
                     <p>Gender</p>
                     <div class="d-flex row w-50 mx-auto gap-4">
                         <div class="d-flex col gap-2">
-                            <input type="radio" class="form-check-input" value="male" id="male" name="gender" required {{ old('gender') == 'male' ? 'checked' : '' }} >
+                            <input type="radio" class="form-check-input" value="male" id="male" name="gender"
+                                {{ old('gender') == 'male' ? 'checked' : '' }}>
                             <label for="male" class="form-check-label">Male</label>
                         </div>
                         <div class="d-flex col gap-2">
-                            <input type="radio" class="form-check-input" value="female" id="female" name="gender" required {{ old('gender') == 'female' ? 'checked' : '' }} >
+                            <input type="radio" class="form-check-input" value="female" id="female" name="gender"
+                                {{ old('gender') == 'female' ? 'checked' : '' }}>
                             <label for="female" class="form-check-label">Female</label>
                         </div>
                     </div>
+                    @error('gender')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="dob" class="form-label">Date of Birth</label>
-                    <input type="date" class="form-control" id="dob" name="dob" required
-                        value="{{ old('dob') }}">
+                    <input type="date" class="form-control" id="dob" name="dob" value="{{ old('dob') }}">
                     @error('dob')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label for="country" class="form-label">Country</label>
-                    <select class="form-select" id="country" name="country" required>
+                    <select class="form-select" id="country" name="country">
                         @foreach ($countries as $country)
                             @if (old('country') == $country)
                                 <option value="{{ $country }}" selected>{{ $country }}</option>
