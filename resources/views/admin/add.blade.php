@@ -2,7 +2,7 @@
 @section('content')
     <div class="row mb-3">
         <div class="col-12">
-            <a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
+            <a href="/" class="btn btn-primary">Back</a>
         </div>
     </div>
     @if (session('success'))
